@@ -48,3 +48,7 @@ func load_game():
 func unlock_level():
 	unlocked_levels += 1
 	save_game()
+
+func navigate_to_current_level():
+	var level_path = "res://src/levels/level_" + str(unlocked_levels) + ".tscn" 
+	get_tree().change_scene_to_file(level_path)
