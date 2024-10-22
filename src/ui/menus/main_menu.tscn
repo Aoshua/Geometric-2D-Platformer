@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://k0qp65u3ikco"]
+
+[ext_resource type="Script" path="res://src/ui/menus/main_menu.gd" id="1_4ng5m"]
+[ext_resource type="Texture2D" uid="uid://b7n1ifr3tdfcc" path="res://assets/background.png" id="1_6cj6r"]
+[ext_resource type="Texture2D" uid="uid://ba6lkcbsi6bg2" path="res://assets/player.png" id="2_u8uqp"]
+
+[sub_resource type="Theme" id="Theme_amwds"]
+default_font_size = 80
+
+[node name="MainMenuAlt" type="CanvasLayer"]
+script = ExtResource("1_4ng5m")
+metadata/_edit_horizontal_guides_ = [221.0]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_6cj6r")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = -280.0
+offset_top = -170.0
+offset_right = 281.0
+offset_bottom = -60.0
+
+[node name="Label" type="Label" parent="Control/HBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_amwds")
+text = "green square"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
+custom_minimum_size = Vector2(0, 43)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("2_u8uqp")
+expand_mode = 1
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control2"]
+layout_mode = 0
+offset_left = -65.0
+offset_right = 65.0
+offset_bottom = 66.0
+theme_override_constants/separation = 10
+
+[node name="ContinueButton" type="Button" parent="Control2/VBoxContainer"]
+layout_mode = 2
+text = "Continue"
+
+[node name="SelectLevelButton" type="Button" parent="Control2/VBoxContainer"]
+layout_mode = 2
+text = "Select Level"
+
+[connection signal="pressed" from="Control2/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Control2/VBoxContainer/SelectLevelButton" to="." method="_on_select_level_button_pressed"]

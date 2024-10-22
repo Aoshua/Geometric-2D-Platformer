@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bln2swwe26jf2"]
+
+[ext_resource type="Texture2D" uid="uid://nel4i8h5p77i" path="res://assets/jump_button.png" id="1_gcmhh"]
+[ext_resource type="Script" path="res://src/ui/jump_button.gd" id="2_sfo76"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wugl0"]
+radius = 150.0
+
+[node name="JumpButton" type="TouchScreenButton"]
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("1_gcmhh")
+shape = SubResource("CircleShape2D_wugl0")
+script = ExtResource("2_sfo76")
