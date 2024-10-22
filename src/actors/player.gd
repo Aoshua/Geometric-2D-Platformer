@@ -12,11 +12,8 @@ func _on_enemy_detector_area_entered(area: Area2D) -> void:
 func _on_enemy_detector_body_entered(body: Node2D) -> void:
 	var game_over_scene = load("res://src/ui/menus/game_over.tscn").instantiate()
 	get_tree().root.add_child(game_over_scene)
-	
-	# Optionally pause the game
-	# get_tree().paused = true
 
-	# queue_free()  # Remove the player
+	queue_free()  # Remove the player
 
 
 func _physics_process(delta: float) -> void:
