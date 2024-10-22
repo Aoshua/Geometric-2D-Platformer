@@ -5,6 +5,7 @@ func _ready():
 
 
 func _on_continue_button_pressed():
+	print("Continue Button Pressed")
 	var level_path = "res://src/levels/level_" + str(Global.unlocked_levels) + ".tscn" 
 	get_tree().change_scene_to_file(level_path)
 
