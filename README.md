@@ -1,19 +1,17 @@
-# Godot Demo - 2D Platformer
+# Geometric 2D Platformer
 
-This demo project shows how to create a game similar to Mario. It was created following [this tutorial](https://www.youtube.com/watch?v=Mc13Z2gboEk&ab_channel=GDQuest).
+[Come up with a description later]
 
-Godot version: 4.3
+Godot version: 4.2.2
 
-### Features:
-
--   2D gravity
--   Mobs stomp box
--   Fluid camera movement & camera bounds
--   Custom animations such as bounce and fade in/out
--   Navigation between levels
-
-### Things to "round it out":
+### Things to make it playable:
 
 -   Upon death, reset level
 -   Upon game completion, option to reset game
--   Score system
+-   Persist coins collected
+
+### Ideas to make it my own
+-   Replace player sprite with a cirle with some kind of top/bottom pattern. Add rolling
+-   Replace enemy sprite with yellow triangle (maybe animate them to still look like jello)
+-   Change up the coin sprite a little
+-   Allow coins to purchase different player skins other perks like temporary invincibility
