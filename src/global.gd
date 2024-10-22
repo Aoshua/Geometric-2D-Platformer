@@ -33,15 +33,16 @@ func load_game():
 		return
 	
 	var json = JSON.new()
-	var parse_result = json.parse(file.get_as_text())  # Use JSON.parse to convert JSON text to a dictionary.
+	var parse_result = json.parse(file.get_line())
 	file.close()
 
-	if parse_result.error != OK:
+	if not parse_result == OK:
 		print("Failed to parse save file.")
 		return
 	
 	# Set unlocked levels, defaulting to level 1 if not found
-	unlocked_levels = parse_result.result.get("unlocked_levels", 1)
+	var thing = json.data["unlocked_levels"] 
+	unlocked_levels = thing
 
 # Call whenever the user unlocks a new level.
 func unlock_level():
