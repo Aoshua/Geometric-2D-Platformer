@@ -2,7 +2,7 @@ extends CanvasLayer
 
 
 func _on_reset_button_pressed():
-	Global.navigate_to_current_level()
+	get_tree().reload_current_scene()
 	queue_free()
 
 
