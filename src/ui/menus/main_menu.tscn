@@ -8,6 +8,7 @@
 default_font_size = 102
 
 [node name="MainMenuAlt" type="CanvasLayer"]
+follow_viewport_enabled = true
 script = ExtResource("1_4ng5m")
 metadata/_edit_horizontal_guides_ = [246.0]
 

@@ -1,13 +1,13 @@
 extends Button
 
 var level_number = 0
-var level_scene = ""
+var level_path = ""
 var is_unlocked = false
 
 # Function to set up the button with level info
 func set_level(number: int, unlocked: bool):
 	level_number = number
-	level_scene = "res://src/levels/level_" + str(number) + ".tscn"
+	level_path = "res://src/levels/level_" + str(number) + ".tscn"
 	is_unlocked = unlocked
 	
 	# Set button text
@@ -23,4 +23,4 @@ func set_level(number: int, unlocked: bool):
 
 func _pressed():
 	if is_unlocked:
-		get_tree().change_scene_to_file(level_scene)
+		get_tree().change_scene_to_file(level_path)
