@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bunoo8gsksr0h"]
+[gd_scene load_steps=8 format=3 uid="uid://bunoo8gsksr0h"]
 
 [ext_resource type="Script" path="res://src/actors/player.gd" id="1_34e7d"]
 [ext_resource type="Texture2D" uid="uid://ba6lkcbsi6bg2" path="res://assets/player.png" id="1_gc24r"]
 [ext_resource type="PackedScene" uid="uid://br2wdw0ip7pdg" path="res://src/ui/joystick.tscn" id="3_ca37w"]
 [ext_resource type="PackedScene" uid="uid://bln2swwe26jf2" path="res://src/ui/jump_button.tscn" id="4_jkb2p"]
+[ext_resource type="Texture2D" uid="uid://lhvldnoeg62b" path="res://assets/pause-solid.png" id="5_p0njd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k14d6"]
 size = Vector2(80, 88)
@@ -65,6 +66,21 @@ metadata/_edit_use_anchors_ = true
 [node name="JumpButton" parent="PlayerControls/Control2" instance=ExtResource("4_jkb2p")]
 position = Vector2(-159, -160)
 action = "jump"
+
+[node name="Control3" type="Control" parent="PlayerControls"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -52.0
+offset_top = 10.0
+offset_right = -12.0
+offset_bottom = 50.0
+grow_horizontal = 0
+
+[node name="PauseButton" type="TouchScreenButton" parent="PlayerControls/Control3"]
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("5_p0njd")
 
 [connection signal="area_entered" from="EnemyDetector" to="." method="_on_enemy_detector_area_entered"]
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_enemy_detector_body_entered"]
