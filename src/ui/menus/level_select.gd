@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 var levels_path = "res://src/levels"
-var total_levels = 7 # Actual value is 7
+var total_levels = 19 # Actual value is 7
 var rows = 3
 var columns = 6
 var levels_per_page = rows * columns
