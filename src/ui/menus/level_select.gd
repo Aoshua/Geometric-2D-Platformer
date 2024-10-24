@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 var levels_path = "res://src/levels"
-var total_levels = 7
+var total_levels = 19 # Actual value is 7
 var rows = 3
 var columns = 6
 var levels_per_page = rows * columns
@@ -11,6 +11,7 @@ var total_pages = int(ceil(float(total_levels) / levels_per_page))
 @onready var level_button_scene = preload("res://src/ui/level_button.tscn")
 
 func _ready():
+	current_page = int(19 / levels_per_page) # Determine initial page
 	update_grid()
 
 
@@ -39,7 +40,7 @@ func update_grid():
 		var level_button = level_button_scene.instantiate()
 
 		# Determine if this level is unlocked
-		if i < Global.unlocked_levels:
+		if i < 19:
 			level_button.set_level(i + 1, true)  # Unlocked
 		else:
 			level_button.set_level(i + 1, false)  # Locked
