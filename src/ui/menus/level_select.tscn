@@ -88,8 +88,9 @@ size_flags_vertical = 4
 
 [node name="LeftButton" type="TouchScreenButton" parent="Control/HBoxContainer/Control"]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.764706)
 position = Vector2(-202, 20)
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.4, 0.4)
 texture_normal = ExtResource("3_ih026")
 texture_pressed = ExtResource("3_wax42")
 
@@ -108,8 +109,9 @@ size_flags_vertical = 4
 
 [node name="RightButton" type="TouchScreenButton" parent="Control/HBoxContainer/Control2"]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.776471)
 position = Vector2(104, 20)
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.4, 0.4)
 texture_normal = ExtResource("5_h8kuv")
 texture_pressed = ExtResource("3_n0d1y")
 
