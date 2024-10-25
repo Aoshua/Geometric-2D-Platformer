@@ -45,7 +45,7 @@ func on_rewarded_ad_loaded(loaded_ad : RewardedAd) -> void:
 	if rewarded_ad:
 		rewarded_ad.show()
 		# Set up the callback for when the ad is watched to completion
-		rewarded_ad.connect("on_rewarded_ad_dismissed_full_screen_content", on_user_earned_reward)
+		rewarded_ad.connect("on_ad_dismissed_full_screen_content", on_user_earned_reward)
 
 
 func on_user_earned_reward() -> void:

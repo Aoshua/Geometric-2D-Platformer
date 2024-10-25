@@ -7,6 +7,7 @@ Godot version: 4.2.2
 ### Todo:
 
 -   Add revive ad
+-   Idea for loader UI: same icon I use for controls but with a small circle on the top that just spins until loading ends
 -   Persist coins collected
 -   Implement some of the "ideas to make it my own"
 -   Add banner ad on pause screen?
