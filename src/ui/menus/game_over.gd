@@ -3,6 +3,7 @@ extends CanvasLayer
 
 var rewarded_ad : RewardedAd
 var rewarded_ad_load_callback := RewardedAdLoadCallback.new()
+var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
 
 
 func _on_reset_button_pressed():
@@ -26,6 +27,7 @@ func _on_revive_button_pressed():
 	# Define the callbacks for ad loading
 	rewarded_ad_load_callback.on_ad_failed_to_load = on_rewarded_ad_failed_to_load
 	rewarded_ad_load_callback.on_ad_loaded = on_rewarded_ad_loaded
+	on_user_earned_reward_listener.on_user_earned_reward = on_user_earned_reward
 
 
 func _on_main_menu_button_pressed():
@@ -44,11 +46,9 @@ func on_rewarded_ad_loaded(loaded_ad : RewardedAd) -> void:
 	# Show the ad once it's loaded
 	if rewarded_ad:
 		rewarded_ad.show()
-		# Set up the callback for when the ad is watched to completion
-		rewarded_ad.connect("on_ad_dismissed_full_screen_content", on_user_earned_reward)
 
 
-func on_user_earned_reward() -> void:
+func on_user_earned_reward(rewarded_item : RewardedItem) -> void:
 	# This function is called once the ad is successfully watched
 	print("User earned reward, reviving player...")
 	revive_player()
