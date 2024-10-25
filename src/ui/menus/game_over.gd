@@ -48,9 +48,10 @@ func on_rewarded_ad_loaded(loaded_ad : RewardedAd) -> void:
 		rewarded_ad.on_user_earned_reward = on_user_earned_reward
 
 
-func on_user_earned_reward() -> void:
+func on_user_earned_reward(reward: RewardedItem) -> void:
 	# This function is called once the ad is successfully watched
 	print("User earned reward, reviving player...")
+	print("RewardedItem", str(reward.amount))
 	revive_player()
 
 
