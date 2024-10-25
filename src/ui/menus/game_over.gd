@@ -45,13 +45,12 @@ func on_rewarded_ad_loaded(loaded_ad : RewardedAd) -> void:
 	if rewarded_ad:
 		rewarded_ad.show()
 		# Set up the callback for when the ad is watched to completion
-		rewarded_ad.on_user_earned_reward = on_user_earned_reward
+		rewarded_ad.connect("user_earned_reward", on_user_earned_reward)
 
 
-func on_user_earned_reward(reward: RewardedItem) -> void:
+func on_user_earned_reward() -> void:
 	# This function is called once the ad is successfully watched
 	print("User earned reward, reviving player...")
-	print("RewardedItem", str(reward.amount))
 	revive_player()
 
 
