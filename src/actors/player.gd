@@ -1,9 +1,11 @@
 extends Actor
 
+
 @export var stomp_impulse = 500.0
 const JUMP_FORCE = 1300.0
 const MOVE_SPEED = 800.0
 const GRAVITY = 3000.0
+
 
 func _on_enemy_detector_area_entered(area: Area2D) -> void:
 	velocity = calculate_stomp_velocity(velocity, stomp_impulse)
@@ -14,6 +16,13 @@ func _on_enemy_detector_body_entered(body: Node2D) -> void:
 	get_tree().root.add_child(game_over_scene)
 
 	queue_free()  # Remove the player
+
+
+func _on_pause_button_pressed():
+	get_tree().paused = true
+	var pause_menu = load("res://src/ui/menus/pause_menu.tscn").instantiate()
+	pause_menu.process_mode = Node.PROCESS_MODE_ALWAYS
+	get_tree().root.add_child(pause_menu)
 
 
 func _physics_process(delta: float) -> void:
