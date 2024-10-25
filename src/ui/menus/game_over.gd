@@ -1,8 +1,8 @@
 extends CanvasLayer
 
 
-var admob = null
-var rewarded_ad = null
+var rewarded_ad : RewardedAd
+var rewarded_ad_load_callback := RewardedAdLoadCallback.new()
 
 
 func _on_reset_button_pressed():
@@ -11,9 +11,21 @@ func _on_reset_button_pressed():
 
 
 func _on_revive_button_pressed():
-	print("revive pressed")
-	if admob and rewarded_ad:
-		admob.show_rewarded_ad()
+	print("Revive button pressed")
+	# Load the ad when the revive button is pressed
+	var unit_id : String
+	if OS.get_name() == "Android":
+		unit_id = "ca-app-pub-3940256099942544/5224354917"
+	elif OS.get_name() == "iOS":
+		unit_id = "ca-app-pub-3940256099942544/1712485313"
+
+	# Set up the ad loader and callbacks
+	var ad_loader = RewardedAdLoader.new()
+	ad_loader.load(unit_id, AdRequest.new(), rewarded_ad_load_callback)
+
+	# Define the callbacks for ad loading
+	rewarded_ad_load_callback.on_ad_failed_to_load = on_rewarded_ad_failed_to_load
+	rewarded_ad_load_callback.on_ad_loaded = on_rewarded_ad_loaded
 
 
 func _on_main_menu_button_pressed():
@@ -21,49 +33,27 @@ func _on_main_menu_button_pressed():
 	queue_free()
 
 
-#region Ad Signals
-func _on_rewarded_ad_loaded():
-	print("Rewarded ad loaded")
-	rewarded_ad = true
+func on_rewarded_ad_failed_to_load(adError : LoadAdError) -> void:
+	print(adError.message)
 
 
-func _on_rewarded_ad_failed_to_load(error_code):
-	print("Rewarded ad failed to load: ", error_code)
-	rewarded_ad = false
+func on_rewarded_ad_loaded(loaded_ad : RewardedAd) -> void:
+	print("Rewarded ad loaded successfully")
+	self.rewarded_ad = loaded_ad
+
+	# Show the ad once it's loaded
+	if rewarded_ad:
+		rewarded_ad.show()
+		# Set up the callback for when the ad is watched to completion
+		rewarded_ad.on_user_earned_reward = on_user_earned_reward
 
 
-func _on_rewarded_ad_failed_to_show(error_code):
-	print("Rewarded ad failed to show: ", error_code)
-
-
-func _on_rewarded_ad_closed():
-	print("Rewarded ad closed")
-	# Reload the ad for next time
-	admob.load_rewarded_ad(Global.ad_id_revive)
-
-
-func _on_rewarded_ad_opened():
-	print("Rewarded ad opened")
-
-func _on_reward_earned(currency, amount):
-	print("Reward earned: ", currency, " ", amount)
+func on_user_earned_reward() -> void:
+	# This function is called once the ad is successfully watched
+	print("User earned reward, reviving player...")
 	revive_player()
-#endregion
-
-func _ready():
-	print("game_over > ready")
-	if Engine.has_singleton("AdMob"):
-		print("AdMob found")
-		admob = Engine.get_singleton("AdMob")
-		admob.initialize()
-		admob.rewarded_ad_loaded.connect(_on_rewarded_ad_loaded)
-		admob.rewarded_ad_failed_to_load.connect(_on_rewarded_ad_failed_to_load)
-		admob.rewarded_ad_failed_to_show.connect(_on_rewarded_ad_failed_to_show)
-		admob.rewarded_ad_closed.connect(_on_rewarded_ad_closed)
-		admob.rewarded_ad_opened.connect(_on_rewarded_ad_opened)
-		admob.rewarded_ad_recording_earned_reward.connect(_on_reward_earned)
-		admob.load_rewarded_ad(Global.ad_id_revive)
 
 
 func revive_player():
-	return # todo
+	print("Reviving player...")
+	# Your revival logic here
