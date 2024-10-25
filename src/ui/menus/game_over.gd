@@ -11,7 +11,6 @@ func _on_reset_button_pressed():
 
 
 func _on_revive_button_pressed():
-	print("Revive button pressed")
 	# Load the ad when the revive button is pressed
 	var unit_id : String
 	if OS.get_name() == "Android":
@@ -38,14 +37,13 @@ func on_rewarded_ad_failed_to_load(adError : LoadAdError) -> void:
 
 
 func on_rewarded_ad_loaded(loaded_ad : RewardedAd) -> void:
-	print("Rewarded ad loaded successfully")
 	self.rewarded_ad = loaded_ad
 
 	# Show the ad once it's loaded
 	if rewarded_ad:
 		rewarded_ad.show()
 		# Set up the callback for when the ad is watched to completion
-		rewarded_ad.connect("user_earned_reward", on_user_earned_reward)
+		rewarded_ad.on_rewarded_ad_dismissed_full_screen_content = on_user_earned_reward
 
 
 func on_user_earned_reward() -> void:
