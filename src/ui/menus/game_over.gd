@@ -9,6 +9,7 @@ func _on_reset_button_pressed():
 	get_tree().reload_current_scene()
 	queue_free()
 
+
 func _on_revive_button_pressed():
 	print("Revive button pressed")
 	# Load the ad when the revive button is pressed
@@ -25,7 +26,7 @@ func _on_revive_button_pressed():
 	# Define the callbacks for ad loading
 	rewarded_ad_load_callback.on_ad_failed_to_load = on_rewarded_ad_failed_to_load
 	rewarded_ad_load_callback.on_ad_loaded = on_rewarded_ad_loaded
-	on_user_earned_reward_listener.on_user_earned_reward = on_user_earned_reward
+
 
 func _on_main_menu_button_pressed():
 	get_tree().change_scene_to_file("res://src/ui/menus/main_menu.tscn")
@@ -41,17 +42,12 @@ func on_rewarded_ad_loaded(loaded_ad : RewardedAd) -> void:
 	rewarded_ad.full_screen_content_callback = full_screen_content_callback
 
 	# Set up the full screen content callback
-	full_screen_content_callback.on_ad_dismissed_full_screen_content = func() -> void:
-		print("Ad dismissed, cleaning up")
-		revive_player()  # Revive the player here when ad is dismissed
+	full_screen_content_callback.on_ad_dismissed_full_screen_content = revive_player
 
 	# Show the ad once it's loaded
 	if rewarded_ad:
 		rewarded_ad.show(on_user_earned_reward_listener)
 
-func on_user_earned_reward(rewarded_item : RewardedItem) -> void:
-	# This function is called once the ad is successfully watched
-	print("User earned reward...")
 
 func revive_player():
 	print("Reviving player...")

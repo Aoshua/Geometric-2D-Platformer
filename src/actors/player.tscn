@@ -19,6 +19,8 @@ size = Vector2(200, 200)
 collision_mask = 14
 script = ExtResource("1_34e7d")
 stomp_impulse = 600.0
+metadata/_edit_vertical_guides_ = [1152.0]
+metadata/_edit_horizontal_guides_ = [600.0]
 
 [node name="Player" type="Sprite2D" parent="."]
 position = Vector2(0, -48)
@@ -53,7 +55,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Joystick" parent="PlayerControls/Control" instance=ExtResource("3_ca37w")]
 unique_name_in_owner = true
-position = Vector2(10, -189)
+position = Vector2(35, -213)
 
 [node name="Control2" type="Control" parent="PlayerControls"]
 layout_mode = 3
@@ -67,7 +69,7 @@ grow_vertical = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="JumpButton" parent="PlayerControls/Control2" instance=ExtResource("4_jkb2p")]
-position = Vector2(-159, -160)
+position = Vector2(-194, -199)
 action = "jump"
 
 [node name="Control3" type="Control" parent="PlayerControls"]
