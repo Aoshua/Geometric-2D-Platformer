@@ -22,7 +22,8 @@ texture = ExtResource("2_xlihw")
 position = Vector2(0, -27.5)
 shape = SubResource("RectangleShape2D_wjhwq")
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+[node name="ScreenEnabler" type="VisibleOnScreenEnabler2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(0, -10)
 scale = Vector2(5.4, 1)
 
@@ -36,4 +37,5 @@ scale = Vector2(2.74046, 2.42662)
 shape = SubResource("RectangleShape2D_fw7d3")
 debug_color = Color(8.66354e-07, 0.622202, 0.548045, 0.42)
 
+[connection signal="screen_entered" from="ScreenEnabler" to="." method="_on_screen_enabler_screen_entered"]
 [connection signal="body_entered" from="StompDetector" to="." method="_on_stop_detector_body_entered"]

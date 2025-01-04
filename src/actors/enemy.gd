@@ -1,5 +1,6 @@
 extends Actor
 
+
 func _ready() -> void:
 	velocity.x = -speed.x
 
@@ -22,3 +23,7 @@ func _physics_process(delta: float) -> void:
 func disable_collision_and_free() -> void:
 	$CollisionShape2D.disabled = true
 	queue_free()
+
+
+func _on_screen_enabler_screen_entered():
+	$ScreenEnabler.queue_free()
