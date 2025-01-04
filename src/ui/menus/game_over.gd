@@ -17,7 +17,7 @@ func _on_revive_button_pressed():
 	if OS.get_name() == "Android":
 		unit_id = "ca-app-pub-3940256099942544/5224354917"
 	elif OS.get_name() == "iOS":
-		unit_id = "ca-app-pub-3940256099942544/1712485313"
+		unit_id = "ca-app-pub-3940256099942544/1712485313" # Global.ad_id_ios_revive
 
 	# Set up the ad loader and callbacks
 	var ad_loader = RewardedAdLoader.new()
