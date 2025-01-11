@@ -7,7 +7,7 @@
 radius = 150.0
 
 [node name="JumpButton" type="TouchScreenButton"]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.6, 0.6)
 texture_normal = ExtResource("1_gcmhh")
 shape = SubResource("CircleShape2D_wugl0")
 script = ExtResource("2_sfo76")
