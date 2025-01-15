@@ -1,8 +1,6 @@
 extends Node
 
 var unlocked_levels = 1
-#var ad_id_ios_revive = "ca-app-pub-3572547557671280/9835166645" # Production ID
-var ad_id_ios_revive = "ca-app-pub-3940256099942544/1712485313" # Test ID
 
 # Path to the save file. For mobile and desktop, this saves to a user-specific directory.
 const SAVE_PATH = "user://save_game.json"
