@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bnxrsmxprvdni"]
 
-[ext_resource type="Texture2D" uid="uid://3kepsv3bxmkb" path="res://assets/loader.png" id="1_m3svf"]
+[ext_resource type="Texture2D" uid="uid://ctpa3l7ck3qk1" path="res://assets/spinner.png" id="1_tacrh"]
 
 [sub_resource type="Animation" id="Animation_q17af"]
 resource_name = "spin"
@@ -25,7 +25,7 @@ _data = {
 
 [node name="SpinnerSprite" type="Sprite2D"]
 rotation = 6.28319
-texture = ExtResource("1_m3svf")
+texture = ExtResource("1_tacrh")
 offset = Vector2(0, -6.5)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

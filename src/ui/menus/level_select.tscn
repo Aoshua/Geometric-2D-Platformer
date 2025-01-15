@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxiblux2c5vm2"]
+[gd_scene load_steps=6 format=3 uid="uid://bxiblux2c5vm2"]
 
 [ext_resource type="Script" path="res://src/ui/menus/level_select.gd" id="1_5bxd8"]
 [ext_resource type="Texture2D" uid="uid://b7n1ifr3tdfcc" path="res://assets/background.png" id="2_e72n5"]
-[ext_resource type="Texture2D" uid="uid://clr07378k0xb7" path="res://assets/chevron_left_darker.png" id="3_ih026"]
 [ext_resource type="Texture2D" uid="uid://b5b2kgobi3yvy" path="res://assets/chevron_button.png" id="3_n0d1y"]
 [ext_resource type="Texture2D" uid="uid://cgnm0lynkdl77" path="res://assets/chevron_left_button.png" id="3_wax42"]
-[ext_resource type="Texture2D" uid="uid://ctvdsdo7h1p55" path="res://assets/chevron_right_darker.png" id="5_h8kuv"]
 
 [sub_resource type="Theme" id="Theme_hek2r"]
 default_font_size = 102
@@ -91,8 +89,7 @@ unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.764706)
 position = Vector2(-202, 20)
 scale = Vector2(0.4, 0.4)
-texture_normal = ExtResource("3_ih026")
-texture_pressed = ExtResource("3_wax42")
+texture_normal = ExtResource("3_wax42")
 
 [node name="GridContainer" type="GridContainer" parent="Control/HBoxContainer"]
 unique_name_in_owner = true
@@ -112,8 +109,7 @@ unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.776471)
 position = Vector2(104, 20)
 scale = Vector2(0.4, 0.4)
-texture_normal = ExtResource("5_h8kuv")
-texture_pressed = ExtResource("3_n0d1y")
+texture_normal = ExtResource("3_n0d1y")
 
 [connection signal="pressed" from="Control/HBoxContainer/Control/LeftButton" to="." method="_on_left_button_pressed"]
 [connection signal="pressed" from="Control/HBoxContainer/Control2/RightButton" to="." method="_on_right_button_pressed"]
