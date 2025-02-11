@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgnm0lynkdl77"
-path="res://.godot/imported/chevron_left_button.png-3f98961601c5e009237b6f82a077c537.ctex"
+uid="uid://265gmu3il6nn"
+path="res://.godot/imported/spinner.png-48b29746f0e85ee624e1103442bf235e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/chevron_left_button.png"
-dest_files=["res://.godot/imported/chevron_left_button.png-3f98961601c5e009237b6f82a077c537.ctex"]
+source_file="res://assets/buttons/spinner.png"
+dest_files=["res://.godot/imported/spinner.png-48b29746f0e85ee624e1103442bf235e.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7ug56l7iw26t"
-path="res://.godot/imported/JoystickSplitted.png-6acec0051794bc91edc6ab48e54e506e.ctex"
+uid="uid://c6tqh3d7hgrp0"
+path="res://.godot/imported/chevron_left_button.png-053bc772f2bb6250f0eed8e9cd57afae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/joystick/JoystickSplitted.png"
-dest_files=["res://.godot/imported/JoystickSplitted.png-6acec0051794bc91edc6ab48e54e506e.ctex"]
+source_file="res://assets/buttons/chevron_left_button.png"
+dest_files=["res://.godot/imported/chevron_left_button.png-053bc772f2bb6250f0eed8e9cd57afae.ctex"]
 
 [params]
 

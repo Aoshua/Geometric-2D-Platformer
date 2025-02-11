@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5b2kgobi3yvy"
-path="res://.godot/imported/chevron_button.png-79027a12b80b581994a8f588b57b688f.ctex"
+uid="uid://d2jtmt8m4cj55"
+path="res://.godot/imported/joystick_inner.png-983cd30cab2d63777c49673f757481b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/chevron_button.png"
-dest_files=["res://.godot/imported/chevron_button.png-79027a12b80b581994a8f588b57b688f.ctex"]
+source_file="res://assets/buttons/joystick_inner.png"
+dest_files=["res://.godot/imported/joystick_inner.png-983cd30cab2d63777c49673f757481b6.ctex"]
 
 [params]
 

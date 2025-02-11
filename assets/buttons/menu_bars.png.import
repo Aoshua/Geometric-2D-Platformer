@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c185kyg1rayh0"
-path="res://.godot/imported/JoystickSplitted_gray.png-41cdaa90784ce164bd76f00ac20c6b38.ctex"
+uid="uid://cqeeqbwxpfs74"
+path="res://.godot/imported/menu_bars.png-3314607cf128cd26c60b3c0ca038364c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/joystick/JoystickSplitted_gray.png"
-dest_files=["res://.godot/imported/JoystickSplitted_gray.png-41cdaa90784ce164bd76f00ac20c6b38.ctex"]
+source_file="res://assets/buttons/menu_bars.png"
+dest_files=["res://.godot/imported/menu_bars.png-3314607cf128cd26c60b3c0ca038364c.ctex"]
 
 [params]
 

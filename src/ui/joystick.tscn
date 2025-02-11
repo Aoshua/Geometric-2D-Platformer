@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://br2wdw0ip7pdg"]
 
-[ext_resource type="Texture2D" uid="uid://c7ug56l7iw26t" path="res://assets/joystick/JoystickSplitted.png" id="1_g5ti6"]
+[ext_resource type="Texture2D" uid="uid://lk71uqmv3mi7" path="res://assets/buttons/joystick_outer.png" id="1_g5ti6"]
 [ext_resource type="Script" path="res://src/ui/joystick.gd" id="2_k7vjl"]
-[ext_resource type="Texture2D" uid="uid://chte7vpm21t18" path="res://assets/joystick/SmallHandle.png" id="2_w43c8"]
+[ext_resource type="Texture2D" uid="uid://d2jtmt8m4cj55" path="res://assets/buttons/joystick_inner.png" id="2_w43c8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a1pa8"]
 radius = 150.0
@@ -12,8 +12,10 @@ scale = Vector2(0.6, 0.6)
 texture_normal = ExtResource("1_g5ti6")
 shape = SubResource("CircleShape2D_a1pa8")
 script = ExtResource("2_k7vjl")
+metadata/_edit_vertical_guides_ = [180.0]
+metadata/_edit_horizontal_guides_ = [180.0]
 
 [node name="Knob" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(178, 178)
+position = Vector2(146, 148)
 texture = ExtResource("2_w43c8")

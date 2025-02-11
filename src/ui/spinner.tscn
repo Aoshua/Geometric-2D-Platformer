@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bnxrsmxprvdni"]
 
-[ext_resource type="Texture2D" uid="uid://ctpa3l7ck3qk1" path="res://assets/spinner.png" id="1_tacrh"]
+[ext_resource type="Texture2D" uid="uid://265gmu3il6nn" path="res://assets/buttons/spinner.png" id="1_tacrh"]
 
 [sub_resource type="Animation" id="Animation_q17af"]
 resource_name = "spin"

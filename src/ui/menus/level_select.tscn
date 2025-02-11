@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://src/ui/menus/level_select.gd" id="1_5bxd8"]
 [ext_resource type="Texture2D" uid="uid://b7n1ifr3tdfcc" path="res://assets/background.png" id="2_e72n5"]
-[ext_resource type="Texture2D" uid="uid://b5b2kgobi3yvy" path="res://assets/chevron_button.png" id="3_n0d1y"]
-[ext_resource type="Texture2D" uid="uid://cgnm0lynkdl77" path="res://assets/chevron_left_button.png" id="3_wax42"]
+[ext_resource type="Texture2D" uid="uid://um3nrnvfvsp7" path="res://assets/buttons/chevron_button.png" id="3_n0d1y"]
+[ext_resource type="Texture2D" uid="uid://c6tqh3d7hgrp0" path="res://assets/buttons/chevron_left_button.png" id="3_wax42"]
 
 [sub_resource type="Theme" id="Theme_hek2r"]
 default_font_size = 102
