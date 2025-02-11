@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bunoo8gsksr0h"]
+[gd_scene load_steps=9 format=3 uid="uid://bunoo8gsksr0h"]
 
 [ext_resource type="Script" path="res://src/actors/player.gd" id="1_34e7d"]
 [ext_resource type="Texture2D" uid="uid://ba6lkcbsi6bg2" path="res://assets/player.png" id="1_gc24r"]
 [ext_resource type="PackedScene" uid="uid://br2wdw0ip7pdg" path="res://src/ui/joystick.tscn" id="3_ca37w"]
 [ext_resource type="PackedScene" uid="uid://bln2swwe26jf2" path="res://src/ui/jump_button.tscn" id="4_jkb2p"]
 [ext_resource type="Texture2D" uid="uid://dnt4dhgray24d" path="res://assets/menu-solid.png" id="5_t4sav"]
-[ext_resource type="Texture2D" uid="uid://dxpfsxh0is0gx" path="res://assets/coin.png" id="6_ehbd0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k14d6"]
 size = Vector2(80, 88)
@@ -21,7 +20,7 @@ collision_mask = 14
 script = ExtResource("1_34e7d")
 stomp_impulse = 600.0
 metadata/_edit_vertical_guides_ = [1152.0]
-metadata/_edit_horizontal_guides_ = [600.0]
+metadata/_edit_horizontal_guides_ = [613.0]
 
 [node name="Player" type="Sprite2D" parent="."]
 position = Vector2(0, -48)
@@ -44,9 +43,9 @@ position = Vector2(0, -44.5)
 shape = SubResource("RectangleShape2D_5tgo8")
 debug_color = Color(0.903486, 0.198293, 0.588252, 0.42)
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="PlayerControls" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="HUD"]
+[node name="Control" type="Control" parent="PlayerControls"]
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -54,11 +53,11 @@ anchor_bottom = 1.0
 grow_vertical = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="Joystick" parent="HUD/Control" instance=ExtResource("3_ca37w")]
+[node name="Joystick" parent="PlayerControls/Control" instance=ExtResource("3_ca37w")]
 unique_name_in_owner = true
-position = Vector2(35, -213)
+position = Vector2(55, -236)
 
-[node name="Control2" type="Control" parent="HUD"]
+[node name="Control2" type="Control" parent="PlayerControls"]
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
@@ -69,11 +68,11 @@ grow_horizontal = 0
 grow_vertical = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="JumpButton" parent="HUD/Control2" instance=ExtResource("4_jkb2p")]
-position = Vector2(-194, -199)
+[node name="JumpButton" parent="PlayerControls/Control2" instance=ExtResource("4_jkb2p")]
+position = Vector2(-250, -218)
 action = "jump"
 
-[node name="Control3" type="Control" parent="HUD"]
+[node name="Control3" type="Control" parent="PlayerControls"]
 layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
@@ -84,47 +83,13 @@ offset_right = -12.0
 offset_bottom = 50.0
 grow_horizontal = 0
 
-[node name="PauseButton" type="TouchScreenButton" parent="HUD/Control3"]
+[node name="PauseButton" type="TouchScreenButton" parent="PlayerControls/Control3"]
 modulate = Color(1, 1, 1, 0.560784)
 position = Vector2(-29, 11)
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("5_t4sav")
 shape = SubResource("RectangleShape2D_c3rme")
 
-[node name="Control4" type="Control" parent="HUD"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 63.0
-offset_top = 15.0
-offset_right = 103.0
-offset_bottom = 55.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Control4"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="CoinSprite" type="Sprite2D" parent="HUD/Control4/HBoxContainer"]
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("6_ehbd0")
-offset = Vector2(-34, 36)
-
-[node name="CoinsLabel" type="Label" parent="HUD/Control4/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_font_sizes/font_size = 32
-text = "0"
-
 [connection signal="area_entered" from="EnemyDetector" to="." method="_on_enemy_detector_area_entered"]
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_enemy_detector_body_entered"]
-[connection signal="pressed" from="HUD/Control3/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="PlayerControls/Control3/PauseButton" to="." method="_on_pause_button_pressed"]
