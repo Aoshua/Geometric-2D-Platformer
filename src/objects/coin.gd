@@ -5,3 +5,4 @@ extends Area2D
 
 func _on_body_entered(body):
 	anim_player.play("fade_out")
+	Global.add_coin()

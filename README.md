@@ -6,18 +6,18 @@ Godot version: 4.2.2
 
 ### Todo:
 
--   Add revive ad
--   Idea for loader UI: same icon I use for controls but with a small circle on the top that just spins until loading ends
--   Persist coins collected
--   Implement some of the "ideas to make it my own"
--   Add banner ad on pause screen?
+-   [ ] Add revive ad
+-   [x] Idea for loader UI: same icon used for controls but with a small circle on the top that just spins until loading ends
+-   [ ] Persist coins collected
+-   [ ] Implement some of the "ideas to make it my own"
+-   [ ] Add banner ad on pause screen?
 
 ### Ideas to make it my own:
 
--   Replace player sprite with a cirle with some kind of top/bottom pattern. Add rolling
--   Replace enemy sprite with yellow triangle (maybe animate them to still look like jello)
--   Change up the coin sprite a little
--   Allow coins to purchase different player skins other perks like temporary invincibility
+-   [ ] Replace player sprite with a cirle with some kind of top/bottom pattern. Add rolling
+-   [ ] Replace enemy sprite with yellow triangle (maybe animate them to still look like jello)
+-   [ ] Change up the coin sprite a little
+-   [ ] Allow coins to purchase different player skins other perks like temporary invincibility
 
 ### AdMob
 

@@ -7,6 +7,21 @@ const MOVE_SPEED = 800.0
 const GRAVITY = 3000.0
 
 
+func _ready():
+	Global.connect("coins_changed", _on_coins_changed)
+	update_coin_label()
+
+
+func _on_coins_changed():
+	update_coin_label()
+
+
+func update_coin_label():
+	var coin_label = $HUD/Control4/HBoxContainer/CoinsLabel
+	if coin_label:
+		coin_label.text = str(Global.coins)
+
+
 func _on_enemy_detector_area_entered(area: Area2D) -> void:
 	velocity = calculate_stomp_velocity(velocity, stomp_impulse)
 

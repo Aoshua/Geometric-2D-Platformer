@@ -1,8 +1,9 @@
 extends Node
 
 var unlocked_levels = 1
-#var ad_id_ios_revive = "ca-app-pub-3572547557671280/9835166645" # Production ID
-var ad_id_ios_revive = "ca-app-pub-3940256099942544/1712485313" # Test ID
+var coins = 0
+
+signal coins_changed
 
 # Path to the save file. For mobile and desktop, this saves to a user-specific directory.
 const SAVE_PATH = "user://save_game.json"
@@ -10,7 +11,8 @@ const SAVE_PATH = "user://save_game.json"
 # Call this to save the unlocked levels.
 func save_game():
 	var save_data = {
-		"unlocked_levels": unlocked_levels
+		"unlocked_levels": unlocked_levels,
+		"coins": coins
 	}
 
 	# Open the file for writing
@@ -46,11 +48,19 @@ func load_game():
 	var thing = json.data["unlocked_levels"] 
 	unlocked_levels = thing
 
+
 # Call whenever the user unlocks a new level.
 func unlock_level():
 	unlocked_levels += 1
 	save_game()
 
+
 func navigate_to_current_level():
 	var level_path = "res://src/levels/level_" + str(unlocked_levels) + ".tscn" 
 	get_tree().change_scene_to_file(level_path)
+
+
+func add_coin():
+	coins += 1
+	save_game()
+	emit_signal("coins_changed")
