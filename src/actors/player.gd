@@ -17,9 +17,9 @@ func _on_coins_changed():
 
 
 func update_coin_label():
-	var coin_label = $HUD/Control4/HBoxContainer/CoinsLabel
+	var coin_label = %CoinsLabel
 	if coin_label:
-		coin_label.text = str(Global.coins)
+		coin_label.text = "Coins: " + str(Global.coins).pad_zeros(4)
 
 
 func _on_enemy_detector_area_entered(area: Area2D) -> void:
