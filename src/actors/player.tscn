@@ -55,7 +55,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Joystick" parent="PlayerControls/Control" instance=ExtResource("3_ca37w")]
 unique_name_in_owner = true
-position = Vector2(55, -236)
+position = Vector2(55, -203)
+scale = Vector2(0.55, 0.55)
 
 [node name="Control2" type="Control" parent="PlayerControls"]
 layout_mode = 3
@@ -69,7 +70,8 @@ grow_vertical = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="JumpButton" parent="PlayerControls/Control2" instance=ExtResource("4_jkb2p")]
-position = Vector2(-250, -218)
+position = Vector2(-228, -203)
+scale = Vector2(0.55, 0.55)
 action = "jump"
 
 [node name="Control3" type="Control" parent="PlayerControls"]
@@ -103,6 +105,7 @@ unique_name_in_owner = true
 layout_mode = 2
 offset_right = 10.0
 offset_bottom = 23.0
+theme_override_font_sizes/font_size = 30
 text = "Coins: 0000"
 
 [connection signal="area_entered" from="EnemyDetector" to="." method="_on_enemy_detector_area_entered"]

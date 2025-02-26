@@ -12,10 +12,10 @@ scale = Vector2(0.6, 0.6)
 texture_normal = ExtResource("1_g5ti6")
 shape = SubResource("CircleShape2D_a1pa8")
 script = ExtResource("2_k7vjl")
-metadata/_edit_vertical_guides_ = [180.0]
-metadata/_edit_horizontal_guides_ = [180.0]
+metadata/_edit_vertical_guides_ = [180.0, 90.0]
+metadata/_edit_horizontal_guides_ = [180.0, 90.0]
 
 [node name="Knob" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(146, 148)
+position = Vector2(150, 150)
 texture = ExtResource("2_w43c8")

@@ -45,8 +45,8 @@ func load_game():
 		return
 	
 	# Set unlocked levels, defaulting to level 1 if not found
-	var thing = json.data["unlocked_levels"] 
-	unlocked_levels = thing
+	unlocked_levels = json.data["unlocked_levels"]
+	coins = json.data["coins"]
 
 
 # Call whenever the user unlocks a new level.
