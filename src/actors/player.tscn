@@ -13,14 +13,14 @@ size = Vector2(80, 88)
 size = Vector2(96, 89)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c3rme"]
-size = Vector2(350, 300)
+size = Vector2(500, 500)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 14
 script = ExtResource("1_34e7d")
 stomp_impulse = 600.0
 metadata/_edit_vertical_guides_ = [1152.0]
-metadata/_edit_horizontal_guides_ = [613.0]
+metadata/_edit_horizontal_guides_ = [611.0]
 
 [node name="Player" type="Sprite2D" parent="."]
 position = Vector2(0, -48)
@@ -55,8 +55,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Joystick" parent="PlayerControls/Control" instance=ExtResource("3_ca37w")]
 unique_name_in_owner = true
-position = Vector2(55, -203)
-scale = Vector2(0.55, 0.55)
+position = Vector2(51, -186)
+scale = Vector2(0.45, 0.45)
 
 [node name="Control2" type="Control" parent="PlayerControls"]
 layout_mode = 3
@@ -70,8 +70,8 @@ grow_vertical = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="JumpButton" parent="PlayerControls/Control2" instance=ExtResource("4_jkb2p")]
-position = Vector2(-228, -203)
-scale = Vector2(0.55, 0.55)
+position = Vector2(-190, -186)
+scale = Vector2(0.45, 0.45)
 action = "jump"
 
 [node name="Control3" type="Control" parent="PlayerControls"]
@@ -102,6 +102,7 @@ offset_bottom = 55.0
 
 [node name="CoinsLabel" type="Label" parent="PlayerControls/Control4"]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.560784)
 layout_mode = 2
 offset_right = 10.0
 offset_bottom = 23.0

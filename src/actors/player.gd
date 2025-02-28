@@ -6,6 +6,7 @@ const JUMP_FORCE = 1300.0
 const MOVE_SPEED = 800.0
 const GRAVITY = 3000.0
 
+var is_dead = false
 
 func _ready():
 	Global.connect("coins_changed", _on_coins_changed)
@@ -27,10 +28,27 @@ func _on_enemy_detector_area_entered(area: Area2D) -> void:
 
 
 func _on_enemy_detector_body_entered(body: Node2D) -> void:
+	if is_dead:
+		return
+	
+	# Disable player rather than destroying
+	is_dead = true
+	process_mode = Node.PROCESS_MODE_DISABLED
+	visible = false
+	
 	var game_over_scene = load("res://src/ui/menus/game_over.tscn").instantiate()
 	game_over_scene.process_mode = Node.PROCESS_MODE_ALWAYS
 	get_tree().root.add_child(game_over_scene)
-	queue_free()  # Remove the player
+	
+	if game_over_scene.has_method("set_player"):
+		game_over_scene.set_player(self)
+
+
+func revive() -> void:
+	is_dead = false
+	process_mode = Node.PROCESS_MODE_INHERIT
+	visible = true
+	# Reset other state (position, velocity, etc.)?
 
 
 func _on_pause_button_pressed():

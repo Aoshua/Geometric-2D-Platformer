@@ -3,9 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://iyluyv0lua44" path="res://assets/buttons/jump_button.png" id="1_gcmhh"]
 [ext_resource type="Script" path="res://src/ui/jump_button.gd" id="2_sfo76"]
 
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_wugl0"]
-radius = 150.0
+radius = 250.0
 
 [node name="JumpButton" type="TouchScreenButton"]
 scale = Vector2(0.6, 0.6)

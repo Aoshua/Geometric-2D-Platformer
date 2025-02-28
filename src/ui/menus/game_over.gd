@@ -6,6 +6,8 @@ var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
 var full_screen_content_callback := FullScreenContentCallback.new()
 var loading_overlay: CanvasLayer
 
+var player_ref = null
+
 func _on_reset_button_pressed():
 	get_tree().reload_current_scene()
 	queue_free()
@@ -53,9 +55,18 @@ func on_rewarded_ad_loaded(loaded_ad : RewardedAd) -> void:
 		rewarded_ad.show(on_user_earned_reward_listener)
 
 
+func set_player(player):
+	player_ref = player
+
+
 func revive_player():
 	print("Reviving player...")
-	# Your revival logic here
+	if player_ref and player_ref.has_method("revive"):
+		player_ref.revive()
+		queue_free() # Remove game over screen
+	else: # Fallback if no player reference (shouldn't happen, but just in case)
+		print("ERROR: No player reference to revive!")
+		get_tree().reload_current_scene()
 
 
 func show_loading_overlay():
