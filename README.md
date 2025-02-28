@@ -6,7 +6,7 @@ Godot version: 4.2.2
 
 ### Todo:
 
--   [ ] Revive ad (was working at some point)
+-   [ ] Revive ad (seems to work when on celluar data but not when on wifi)
 -   [x] Idea for loader UI: same icon used for controls but with a small circle on the top that just spins until loading ends
 -   [x] Persist coins collected
 -   [ ] Implement some of the "ideas to make it my own"
