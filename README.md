@@ -8,14 +8,14 @@ Godot version: 4.2.2
 
 -   [ ] Revive ad (seems to work when on celluar data but not when on wifi)
 -   [x] Idea for loader UI: same icon used for controls but with a small circle on the top that just spins until loading ends
--   [x] Persist coins collected
+-   [ ] Only persist coins on level completion
 -   [ ] Implement some of the "ideas to make it my own"
 -   [ ] Banner ad on pause screen?
+-   [ ] Pause screen should hide controls
 
 ### Ideas to make it my own:
 
--   [ ] Replace player sprite with a cirle with some kind of top/bottom pattern. Add rolling
--   [ ] Replace enemy sprite with yellow triangle (maybe animate them to still look like jello)
+-   [ ] Animate them to still look like jello)
 -   [ ] Change up the coin sprite a little
 -   [ ] Allow coins to purchase different player skins other perks like temporary invincibility
 
