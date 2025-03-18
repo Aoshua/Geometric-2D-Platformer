@@ -57,6 +57,9 @@ func revive() -> void:
 
 func _on_pause_button_pressed():
 	get_tree().paused = true
+	%Joystick.visible = false
+	%JumpButton.visible = false
+	%PauseButton.visible = false
 	var pause_menu = load("res://src/ui/menus/pause_menu.tscn").instantiate()
 	pause_menu.process_mode = Node.PROCESS_MODE_ALWAYS
 	get_tree().root.add_child(pause_menu)

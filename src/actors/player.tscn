@@ -70,6 +70,7 @@ grow_vertical = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="JumpButton" parent="PlayerControls/Control2" instance=ExtResource("4_jkb2p")]
+unique_name_in_owner = true
 position = Vector2(-190, -186)
 scale = Vector2(0.45, 0.45)
 action = "jump"
@@ -86,6 +87,7 @@ offset_bottom = 50.0
 grow_horizontal = 0
 
 [node name="PauseButton" type="TouchScreenButton" parent="PlayerControls/Control3"]
+unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.560784)
 position = Vector2(-52, 11)
 scale = Vector2(0.25, 0.25)
