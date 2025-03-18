@@ -47,6 +47,7 @@ func load_game():
 	# Set unlocked levels, defaulting to level 1 if not found
 	unlocked_levels = json.data["unlocked_levels"]
 	coins = json.data["coins"]
+	print("Coins loaded: " + str(coins))
 
 
 # Call whenever the user unlocks a new level.
@@ -60,7 +61,7 @@ func navigate_to_current_level():
 	get_tree().change_scene_to_file(level_path)
 
 
-func add_coin():
-	coins += 1
+func add_coins(level_coins: int):
+	print("Coins added: " + str(level_coins))
+	coins += level_coins
 	save_game()
-	emit_signal("coins_changed")

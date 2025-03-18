@@ -1,26 +1,30 @@
 extends Actor
 
-
 @export var stomp_impulse = 500.0
 const JUMP_FORCE = 1300.0
 const MOVE_SPEED = 800.0
 const GRAVITY = 3000.0
 
 var is_dead = false
+var current_coins = 0
 
 func _ready():
-	Global.connect("coins_changed", _on_coins_changed)
 	update_coin_label()
 
-
-func _on_coins_changed():
+# Called by coin on collision
+func collect_coin():
+	current_coins += 1
 	update_coin_label()
+
+# Called by portal on collision
+func bank_coins():
+	Global.add_coins(current_coins)
 
 
 func update_coin_label():
 	var coin_label = %CoinsLabel
 	if coin_label:
-		coin_label.text = "Coins: " + str(Global.coins).pad_zeros(4)
+		coin_label.text = "Coins: " + str(current_coins).pad_zeros(3)
 
 
 func _on_enemy_detector_area_entered(area: Area2D) -> void:

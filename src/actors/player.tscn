@@ -107,7 +107,7 @@ layout_mode = 2
 offset_right = 10.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 30
-text = "Coins: 0000"
+text = "Coins: 000"
 
 [connection signal="area_entered" from="EnemyDetector" to="." method="_on_enemy_detector_area_entered"]
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_enemy_detector_body_entered"]

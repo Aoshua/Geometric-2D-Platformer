@@ -4,14 +4,20 @@ extends Area2D
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @export var next_scene: PackedScene
 
+
 func _on_body_entered(body: Node2D) -> void:
+	if body.has_method("bank_coins"):
+		body.bank_coins()
+		
 	teleport() # Doesn't currently distinguish between player and enemy
+
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings = PackedStringArray()
 	if not next_scene:
 		warnings.append("The next scene property can't be empty")
 	return warnings
+
 
 func teleport() -> void:
 	anim_player.play("fade_in")
