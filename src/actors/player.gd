@@ -8,13 +8,16 @@ const GRAVITY = 3000.0
 var is_dead = false
 var current_coins = 0
 
+
 func _ready():
 	update_coin_label()
+
 
 # Called by coin on collision
 func collect_coin():
 	current_coins += 1
 	update_coin_label()
+
 
 # Called by portal on collision
 func bank_coins():
@@ -35,10 +38,11 @@ func _on_enemy_detector_body_entered(body: Node2D) -> void:
 	if is_dead:
 		return
 	
-	# Disable player rather than destroying
-	is_dead = true
+	is_dead = true # Disable player rather than destroying
+	
 	process_mode = Node.PROCESS_MODE_DISABLED
 	visible = false
+	toggle_control_visibility(false)
 	
 	var game_over_scene = load("res://src/ui/menus/game_over.tscn").instantiate()
 	game_over_scene.process_mode = Node.PROCESS_MODE_ALWAYS
@@ -52,17 +56,28 @@ func revive() -> void:
 	is_dead = false
 	process_mode = Node.PROCESS_MODE_INHERIT
 	visible = true
+	toggle_control_visibility(true)
 	# Reset other state (position, velocity, etc.)?
 
 
 func _on_pause_button_pressed():
 	get_tree().paused = true
-	%Joystick.visible = false
-	%JumpButton.visible = false
-	%PauseButton.visible = false
+	toggle_control_visibility(false)
 	var pause_menu = load("res://src/ui/menus/pause_menu.tscn").instantiate()
+	pause_menu.connect("resume_game", _on_resume_game)
 	pause_menu.process_mode = Node.PROCESS_MODE_ALWAYS
 	get_tree().root.add_child(pause_menu)
+
+
+func _on_resume_game():
+	toggle_control_visibility(true)
+	get_tree().paused = false
+
+
+func toggle_control_visibility(show: bool):
+	%Joystick.visible = show
+	%JumpButton.visible = show
+	%PauseButton.visible = show
 
 
 func _physics_process(delta: float) -> void:

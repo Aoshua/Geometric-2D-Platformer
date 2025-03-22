@@ -1,8 +1,10 @@
 extends CanvasLayer
 
+signal resume_game
+
 
 func _on_resume_button_pressed():
-	get_tree().paused = false
+	emit_signal("resume_game")
 	queue_free()
 
 
