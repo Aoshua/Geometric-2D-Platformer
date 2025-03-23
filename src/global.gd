@@ -47,13 +47,21 @@ func load_game():
 	# Set unlocked levels, defaulting to level 1 if not found
 	unlocked_levels = json.data["unlocked_levels"]
 	coins = json.data["coins"]
+	print("Unlocked levels loaded: " + str(unlocked_levels))
 	print("Coins loaded: " + str(coins))
 
 
+func reset_progress():
+	unlocked_levels = 1
+	coins = 0  # Reset coins too if desired
+	save_game()  # Save the reset values
+
+
 # Call whenever the user unlocks a new level.
-func unlock_level():
-	unlocked_levels += 1
-	save_game()
+func unlock_level(current_level: int):
+	if current_level == unlocked_levels:
+		unlocked_levels += 1
+		save_game()
 
 
 func navigate_to_current_level():
@@ -62,6 +70,5 @@ func navigate_to_current_level():
 
 
 func add_coins(level_coins: int):
-	print("Coins added: " + str(level_coins))
 	coins += level_coins
 	save_game()

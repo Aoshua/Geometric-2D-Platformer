@@ -155,3 +155,4 @@ position = Vector2(7358, 337)
 [node name="Portal" parent="." instance=ExtResource("6_dfoxo")]
 position = Vector2(7074, 256)
 next_scene = ExtResource("7_ysgg4")
+current_level = 1

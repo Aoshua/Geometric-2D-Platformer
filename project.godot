@@ -21,7 +21,7 @@ Global="*res://src/global.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/admob/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 

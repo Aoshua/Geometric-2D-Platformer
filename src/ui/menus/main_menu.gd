@@ -15,3 +15,7 @@ func _on_select_level_button_pressed():
 func _unhandled_input(event):
 	if event is InputEventScreenTouch:
 		print("Screen touched at position: ", event.position)
+
+
+func _on_button_pressed():
+	Global.reset_progress()
