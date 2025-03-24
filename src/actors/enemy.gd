@@ -1,8 +1,17 @@
 extends Actor
 
+var time = 0
+var jiggle_speed = 5.0
+var jiggle_amount = 0.1
+var sprite_height = 0
+var default_y_scale = 1.0
+
 
 func _ready() -> void:
 	velocity.x = -speed.x
+	# Store the original height and scale
+	sprite_height = %EnemySprite.texture.get_height()
+	default_y_scale = %EnemySprite.scale.y
 
 
 func _on_stop_detector_body_entered(body: Node2D) -> void:
@@ -14,9 +23,37 @@ func _on_stop_detector_body_entered(body: Node2D) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	# Jiggle Animation:
+	time += delta
+	var x_scale = 1.0 + sin(time * jiggle_speed) * jiggle_amount
+	var y_scale = 1.0 + cos(time * jiggle_speed) * jiggle_amount
+	
+	# Calculate the difference in height due to scaling
+	var default_height = sprite_height * default_y_scale
+	var new_height = sprite_height * y_scale
+	var height_diff = default_height - new_height
+	
+	# Apply the new scale
+	%EnemySprite.scale = Vector2(x_scale, y_scale)
+	
+	# Directly offset position based on how much the y_scale differs from 1.0
+	# Adjust this offset_factor value until it looks right
+	var offset_factor = sprite_height / 0.75  # Try different values here
+	var y_offset = ((1.0 - y_scale) * offset_factor) - 50
+	
+	# Apply the offset (positive y moves down in Godot)
+	%EnemySprite.position.y = y_offset
+	
+	# Movement:
 	velocity.y += gravity * delta
 	if is_on_wall():
 		velocity.x *= -1.0
+		# Flip the sprite when changing direction
+		if velocity.x > 0:
+			%EnemySprite.flip_h = false
+		else:
+			%EnemySprite.flip_h = true
+		
 	move_and_slide()
 
 
