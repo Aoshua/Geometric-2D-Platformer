@@ -35,22 +35,21 @@ func _on_enemy_detector_area_entered(area: Area2D) -> void:
 
 
 func _on_enemy_detector_body_entered(body: Node2D) -> void:
-	print("Player death commented out")
-	#if is_dead:
-		#return
-	#
-	#is_dead = true # Disable player rather than destroying
-	#
-	#process_mode = Node.PROCESS_MODE_DISABLED
-	#visible = false
-	#toggle_control_visibility(false)
-	#
-	#var game_over_scene = load("res://src/ui/menus/game_over.tscn").instantiate()
-	#game_over_scene.process_mode = Node.PROCESS_MODE_ALWAYS
-	#get_tree().root.add_child(game_over_scene)
-	#
-	#if game_over_scene.has_method("set_player"):
-		#game_over_scene.set_player(self)
+	if is_dead:
+		return
+	
+	is_dead = true # Disable player rather than destroying
+	
+	process_mode = Node.PROCESS_MODE_DISABLED
+	visible = false
+	toggle_control_visibility(false)
+	
+	var game_over_scene = load("res://src/ui/menus/game_over.tscn").instantiate()
+	game_over_scene.process_mode = Node.PROCESS_MODE_ALWAYS
+	get_tree().root.add_child(game_over_scene)
+	
+	if game_over_scene.has_method("set_player"):
+		game_over_scene.set_player(self)
 
 
 func revive() -> void:

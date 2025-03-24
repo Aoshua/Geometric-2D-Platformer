@@ -22,7 +22,7 @@ func _ready():
 	current_song_index = randi() % playlist.size()
 	print("Current song: ", str(current_song_index))
 	
-	set_volume(0.5) # Set initial volume to 50%
+	set_volume(0.25) # Set initial volume to 25%
 	
 	# Start playing
 	play_current_song()
