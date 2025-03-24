@@ -2,6 +2,7 @@ extends Node
 
 var unlocked_levels = 1
 var coins = 0
+var shields = 1 # TODO: Change to 0 after testing
 
 signal coins_changed
 
@@ -12,7 +13,8 @@ const SAVE_PATH = "user://save_game.json"
 func save_game():
 	var save_data = {
 		"unlocked_levels": unlocked_levels,
-		"coins": coins
+		"coins": coins,
+		"shields": shields
 	}
 
 	# Open the file for writing
@@ -39,7 +41,7 @@ func load_game():
 	var json = JSON.new()
 	var parse_result = json.parse(file.get_line())
 	file.close()
-
+	
 	if not parse_result == OK:
 		print("Failed to parse save file.")
 		return
@@ -47,6 +49,7 @@ func load_game():
 	# Set unlocked levels, defaulting to level 1 if not found
 	unlocked_levels = json.data["unlocked_levels"]
 	coins = json.data["coins"]
+	shields = json.data["shields"]
 	print("Unlocked levels loaded: " + str(unlocked_levels))
 	print("Coins loaded: " + str(coins))
 

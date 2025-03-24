@@ -18,7 +18,6 @@ config/icon="res://icon.png"
 [autoload]
 
 Global="*res://src/global.gd"
-MusicManager="*res://src/music_manager.gd"
 
 [editor_plugins]
 
