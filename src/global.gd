@@ -2,7 +2,7 @@ extends Node
 
 var unlocked_levels = 1
 var coins = 0
-var shields = 1 # TODO: Change to 0 after testing
+#var shields = 1 # TODO: Change to 0 after testing
 
 signal coins_changed
 
@@ -14,7 +14,7 @@ func save_game():
 	var save_data = {
 		"unlocked_levels": unlocked_levels,
 		"coins": coins,
-		"shields": shields
+		#"shields": shields
 	}
 
 	# Open the file for writing
@@ -49,7 +49,7 @@ func load_game():
 	# Set unlocked levels, defaulting to level 1 if not found
 	unlocked_levels = json.data["unlocked_levels"]
 	coins = json.data["coins"]
-	shields = json.data["shields"]
+	#shields = json.data["shields"]
 	print("Unlocked levels loaded: " + str(unlocked_levels))
 	print("Coins loaded: " + str(coins))
 
