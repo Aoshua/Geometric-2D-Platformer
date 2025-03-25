@@ -7,10 +7,11 @@ const GRAVITY = 3000.0
 
 var is_dead = false
 var current_coins = 0
-
+var shield_active = false
 
 func _ready():
 	update_coin_label()
+	update_shield_ui(false)
 
 
 # Called by coin on collision
@@ -25,9 +26,19 @@ func bank_coins():
 
 
 func update_coin_label():
-	var coin_label = %CoinsLabel
-	if coin_label:
-		coin_label.text = "Coins: " + str(current_coins).pad_zeros(3)
+	%CoinsLabel.text = "Coins: " + str(current_coins).pad_zeros(3)
+
+
+func update_shield_ui(showShield: bool):
+	%Shield.visible = showShield
+		
+	if (Global.shields == 0):
+		%ShieldButton.visible = false
+		%ShieldLabel.visible = false
+	elif (Global.shields == 1):
+		%ShieldLabel.visible = false
+	else:
+		%ShieldLabel.text = "x " + str(Global.shields)
 
 
 func _on_enemy_detector_area_entered(area: Area2D) -> void:
@@ -35,6 +46,32 @@ func _on_enemy_detector_area_entered(area: Area2D) -> void:
 
 
 func _on_enemy_detector_body_entered(body: Node2D) -> void:
+	if shield_active:
+		# Calculate the normalized vector from the enemy to the player.
+		var bounce_dir = (global_position - body.global_position).normalized()
+		# Set how far you want them to be pushed (in pixels).
+		var bounce_distance = 20
+		
+		# Animate the player's position using a Tween.
+		var player_tween = Tween.new()
+		add_child(player_tween) # TODO: throws error
+		player_tween.interpolate_property(self, "global_position", global_position,
+			global_position + bounce_dir * bounce_distance, 0.2, Tween.TRANS_QUAD, Tween.EASE_OUT)
+		player_tween.start()
+		
+		# Optionally, animate the enemy's position in the opposite direction.
+		var enemy_tween = Tween.new()
+		# Make sure the enemy is set up to accept this change (i.e. it's not a RigidBody2D in physics mode).
+		body.add_child(enemy_tween)
+		enemy_tween.interpolate_property(body, "global_position", body.global_position,
+			body.global_position - bounce_dir * bounce_distance, 0.2, Tween.TRANS_QUAD, Tween.EASE_OUT)
+		enemy_tween.start()
+		
+		# Disable the shield and update the UI.
+		shield_active = false
+		update_shield_ui(false)
+		return
+	
 	if is_dead:
 		return
 	
@@ -135,3 +172,9 @@ func calculate_stomp_velocity(linear_velocity: Vector2, impulse: float) -> Vecto
 	var out = linear_velocity
 	out.y = -impulse # Negates the y velocity
 	return out
+
+
+func _on_shield_button_pressed():
+	Global.use_shield()
+	shield_active = true
+	update_shield_ui(true)

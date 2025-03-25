@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bunoo8gsksr0h"]
+[gd_scene load_steps=12 format=3 uid="uid://bunoo8gsksr0h"]
 
 [ext_resource type="Script" path="res://src/actors/player.gd" id="1_34e7d"]
 [ext_resource type="Texture2D" uid="uid://ba6lkcbsi6bg2" path="res://assets/player.png" id="1_gc24r"]
 [ext_resource type="PackedScene" uid="uid://br2wdw0ip7pdg" path="res://src/ui/joystick.tscn" id="3_ca37w"]
+[ext_resource type="PackedScene" uid="uid://d1bkh1hpd2lvv" path="res://src/objects/shield.tscn" id="3_p81qi"]
 [ext_resource type="PackedScene" uid="uid://bln2swwe26jf2" path="res://src/ui/jump_button.tscn" id="4_jkb2p"]
 [ext_resource type="Texture2D" uid="uid://cqeeqbwxpfs74" path="res://assets/buttons/menu_bars.png" id="5_t4sav"]
 [ext_resource type="Texture2D" uid="uid://cvwvs4bvu8ge5" path="res://assets/buttons/shield_button.png" id="6_o6me4"]
@@ -29,6 +30,10 @@ metadata/_edit_horizontal_guides_ = [611.0]
 [node name="Player" type="Sprite2D" parent="."]
 position = Vector2(0, -48)
 texture = ExtResource("1_gc24r")
+
+[node name="Shield" parent="Player" instance=ExtResource("3_p81qi")]
+unique_name_in_owner = true
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -44)
@@ -100,10 +105,20 @@ shape = SubResource("RectangleShape2D_c3rme")
 
 [node name="ShieldButton" type="TouchScreenButton" parent="PlayerControls/Control3"]
 unique_name_in_owner = true
-position = Vector2(-66, 119)
-scale = Vector2(0.35, 0.35)
+modulate = Color(1, 1, 1, 0.560784)
+position = Vector2(-51, 123)
+scale = Vector2(0.25, 0.25)
 texture_normal = ExtResource("6_o6me4")
 shape = SubResource("CircleShape2D_43lb6")
+
+[node name="ShieldLabel" type="Label" parent="PlayerControls/Control3"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.560784)
+layout_mode = 0
+offset_left = 13.0
+offset_top = 106.0
+offset_right = 53.0
+offset_bottom = 130.0
 
 [node name="Control4" type="Control" parent="PlayerControls"]
 layout_mode = 3
@@ -125,3 +140,4 @@ text = "Coins: 000"
 [connection signal="area_entered" from="EnemyDetector" to="." method="_on_enemy_detector_area_entered"]
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_enemy_detector_body_entered"]
 [connection signal="pressed" from="PlayerControls/Control3/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="PlayerControls/Control3/ShieldButton" to="." method="_on_shield_button_pressed"]

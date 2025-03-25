@@ -2,19 +2,19 @@ extends Node
 
 var unlocked_levels = 1
 var coins = 0
-#var shields = 1 # TODO: Change to 0 after testing
+var shields = 0
 
 signal coins_changed
 
 # Path to the save file. For mobile and desktop, this saves to a user-specific directory.
 const SAVE_PATH = "user://save_game.json"
 
-# Call this to save the unlocked levels.
+
 func save_game():
 	var save_data = {
 		"unlocked_levels": unlocked_levels,
 		"coins": coins,
-		#"shields": shields
+		"shields": shields
 	}
 
 	# Open the file for writing
@@ -26,7 +26,7 @@ func save_game():
 	file.store_line(JSON.stringify(save_data))  # Save data as JSON.
 	file.close()
 
-# Call this to load the unlocked levels when the game starts.
+
 func load_game():
 	if not FileAccess.file_exists(SAVE_PATH):
 		print("No save file found.")
@@ -47,11 +47,12 @@ func load_game():
 		return
 	
 	# Set unlocked levels, defaulting to level 1 if not found
-	unlocked_levels = json.data["unlocked_levels"]
-	coins = json.data["coins"]
-	#shields = json.data["shields"]
+	unlocked_levels = json.data.get("unlocked_levels", 1)
+	coins = json.data.get("coins", 0)
+	shields = 1 #json.data.get("shields", 1) # TODO: Change to 0 after testing
 	print("Unlocked levels loaded: " + str(unlocked_levels))
 	print("Coins loaded: " + str(coins))
+	print("Shields loaded: " + str(shields))
 
 
 func reset_progress():
@@ -74,4 +75,9 @@ func navigate_to_current_level():
 
 func add_coins(level_coins: int):
 	coins += level_coins
+	save_game()
+
+
+func use_shield():
+	shields -= 1
 	save_game()
