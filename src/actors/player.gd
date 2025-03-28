@@ -49,23 +49,33 @@ func _on_enemy_detector_body_entered(body: Node2D) -> void:
 	if shield_active:
 		# Calculate the normalized vector from the enemy to the player.
 		var bounce_dir = (global_position - body.global_position).normalized()
-		# Set how far you want them to be pushed (in pixels).
-		var bounce_distance = 20
+		var bounce_distance = 50
+		var bounce_duration = 0.5
 		
-		# Animate the player's position using a Tween.
-		var player_tween = Tween.new()
-		add_child(player_tween) # TODO: throws error
-		player_tween.interpolate_property(self, "global_position", global_position,
-			global_position + bounce_dir * bounce_distance, 0.2, Tween.TRANS_QUAD, Tween.EASE_OUT)
-		player_tween.start()
+		# Store the enemy's original velocity if it's a CharacterBody2D
+		var original_velocity = Vector2.ZERO
+		if body is CharacterBody2D:
+			original_velocity = body.velocity
 		
-		# Optionally, animate the enemy's position in the opposite direction.
-		var enemy_tween = Tween.new()
-		# Make sure the enemy is set up to accept this change (i.e. it's not a RigidBody2D in physics mode).
-		body.add_child(enemy_tween)
-		enemy_tween.interpolate_property(body, "global_position", body.global_position,
-			body.global_position - bounce_dir * bounce_distance, 0.2, Tween.TRANS_QUAD, Tween.EASE_OUT)
-		enemy_tween.start()
+		# Create and configure tweens using the create_tween() method
+		var player_tween = create_tween()
+		player_tween.tween_property(self, "global_position", 
+			global_position + bounce_dir * bounce_distance, bounce_duration)\
+			.set_trans(Tween.TRANS_QUAD)\
+			.set_ease(Tween.EASE_OUT)
+		
+		# Create tween for the enemy
+		var enemy_tween = body.create_tween()
+		enemy_tween.tween_property(body, "global_position", 
+			body.global_position - bounce_dir * (bounce_distance * 2), bounce_duration)\
+			.set_trans(Tween.TRANS_QUAD)\
+			.set_ease(Tween.EASE_OUT)
+		
+		# Reset the enemy's velocity after the tween completes
+		enemy_tween.tween_callback(func():
+			if body is CharacterBody2D:
+				body.velocity = original_velocity
+		)
 		
 		# Disable the shield and update the UI.
 		shield_active = false

@@ -24,7 +24,7 @@ func _ready():
 	set_volume(0.25) # Set initial volume to 25%
 	
 	# Start playing
-	#play_current_song()
+	play_current_song()
 
 
 func _load_songs():
