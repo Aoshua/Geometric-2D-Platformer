@@ -75,19 +75,25 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="Control2"]
 layout_mode = 0
 offset_left = -200.0
+offset_top = -16.0
 offset_right = 200.0
-offset_bottom = 169.0
+offset_bottom = 271.0
 theme_override_constants/separation = 25
 
 [node name="ContinueButton" type="Button" parent="Control2/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "Continue"
+text = "Play"
 
 [node name="SelectLevelButton" type="Button" parent="Control2/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Select Level"
+
+[node name="ShopButton" type="Button" parent="Control2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Shop"
 
 [node name="Control3" type="Control" parent="."]
 layout_mode = 3
@@ -112,4 +118,5 @@ text = "Reset"
 [connection signal="mouse_exited" from="Control2/VBoxContainer/ContinueButton" to="." method="_on_continue_button_mouse_exited"]
 [connection signal="pressed" from="Control2/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="Control2/VBoxContainer/SelectLevelButton" to="." method="_on_select_level_button_pressed"]
+[connection signal="pressed" from="Control2/VBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="Control3/Button" to="." method="_on_button_pressed"]

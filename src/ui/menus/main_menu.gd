@@ -12,6 +12,10 @@ func _on_select_level_button_pressed():
 	get_tree().change_scene_to_file("res://src/ui/menus/level_select.tscn")
 
 
+func _on_shop_button_pressed():
+	get_tree().change_scene_to_file("res://src/ui/menus/shop.tscn")
+
+
 func _unhandled_input(event):
 	if event is InputEventScreenTouch:
 		print("Screen touched at position: ", event.position)
