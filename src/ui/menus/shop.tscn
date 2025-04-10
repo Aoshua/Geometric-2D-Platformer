@@ -108,6 +108,78 @@ offset_right = 108.0
 offset_bottom = 48.0
 text = "Speed"
 
+[node name="ItemCard4" type="Control" parent="TabContainer/Items/ScrollContainer/ItemsGrid"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+
+[node name="ItemName1" type="Label" parent="TabContainer/Items/ScrollContainer/ItemsGrid/ItemCard4"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 25.0
+offset_right = 108.0
+offset_bottom = 48.0
+text = "Shield"
+
+[node name="ItemCard5" type="Control" parent="TabContainer/Items/ScrollContainer/ItemsGrid"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+
+[node name="ItemName2" type="Label" parent="TabContainer/Items/ScrollContainer/ItemsGrid/ItemCard5"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 25.0
+offset_right = 108.0
+offset_bottom = 48.0
+text = "Health"
+
+[node name="ItemCard6" type="Control" parent="TabContainer/Items/ScrollContainer/ItemsGrid"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+
+[node name="ItemName3" type="Label" parent="TabContainer/Items/ScrollContainer/ItemsGrid/ItemCard6"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 25.0
+offset_right = 108.0
+offset_bottom = 48.0
+text = "Speed"
+
+[node name="ItemCard7" type="Control" parent="TabContainer/Items/ScrollContainer/ItemsGrid"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+
+[node name="ItemName1" type="Label" parent="TabContainer/Items/ScrollContainer/ItemsGrid/ItemCard7"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 25.0
+offset_right = 108.0
+offset_bottom = 48.0
+text = "Shield"
+
+[node name="ItemCard8" type="Control" parent="TabContainer/Items/ScrollContainer/ItemsGrid"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+
+[node name="ItemName2" type="Label" parent="TabContainer/Items/ScrollContainer/ItemsGrid/ItemCard8"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 25.0
+offset_right = 108.0
+offset_bottom = 48.0
+text = "Health"
+
+[node name="ItemCard9" type="Control" parent="TabContainer/Items/ScrollContainer/ItemsGrid"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+
+[node name="ItemName3" type="Label" parent="TabContainer/Items/ScrollContainer/ItemsGrid/ItemCard9"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 25.0
+offset_right = 108.0
+offset_bottom = 48.0
+text = "Speed"
+
 [node name="Skins" type="VBoxContainer" parent="TabContainer"]
 visible = false
 layout_mode = 2
