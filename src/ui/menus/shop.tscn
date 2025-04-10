@@ -1,10 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://edh5q37jsym4"]
+[gd_scene load_steps=8 format=3 uid="uid://edh5q37jsym4"]
 
 [ext_resource type="Script" path="res://src/ui/menus/shop.gd" id="1_0tgnb"]
 [ext_resource type="Texture2D" uid="uid://b7n1ifr3tdfcc" path="res://assets/background.png" id="2_pyi5n"]
+[ext_resource type="Texture2D" uid="uid://dbugxyfskhd5a" path="res://assets/force-field.png" id="3_6ovbw"]
 
 [sub_resource type="Theme" id="Theme_hek2r"]
 default_font_size = 102
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8w5j"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.2, 0.2, 0.2, 0.8)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yucl"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.1, 0.1, 0.1, 0.9)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(0.12, 0.12, 0.14, 0.9)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Shop" type="CanvasLayer"]
 script = ExtResource("1_0tgnb")
@@ -22,8 +48,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -20.0
+offset_top = 16.0
 offset_right = 20.0
-offset_bottom = 40.0
+offset_bottom = 56.0
 grow_horizontal = 2
 
 [node name="ShopLabel" type="Label" parent="Header"]
@@ -54,6 +81,9 @@ offset_right = -10.0
 offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_o8w5j")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_7yucl")
 
 [node name="Items" type="VBoxContainer" parent="TabContainer"]
 layout_mode = 2
@@ -65,120 +95,83 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
+horizontal_scroll_mode = 3
+scroll_deadzone = 10
 
-[node name="ItemsGrid" type="HBoxContainer" parent="TabContainer/Items/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Items/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_right = 25
+
+[node name="ItemsGrid" type="HBoxContainer" parent="TabContainer/Items/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 
-[node name="ItemCard1" type="Control" parent="TabContainer/Items/ScrollContainer/ItemsGrid"]
-custom_minimum_size = Vector2(200, 300)
+[node name="ItemCard1" type="Control" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid"]
+custom_minimum_size = Vector2(220, 380)
 layout_mode = 2
 
-[node name="ItemName1" type="Label" parent="TabContainer/Items/ScrollContainer/ItemsGrid/ItemCard1"]
-layout_mode = 0
-offset_left = 60.0
-offset_top = 25.0
-offset_right = 108.0
-offset_bottom = 48.0
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -150.0
+offset_right = 100.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1/PanelContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemSprite" type="TextureRect" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1/PanelContainer/MarginContainer/VBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 2
+texture = ExtResource("3_6ovbw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Spacer" type="Control" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="ItemName" type="Label" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Shield"
+horizontal_alignment = 1
 
-[node name="ItemCard2" type="Control" parent="TabContainer/Items/ScrollContainer/ItemsGrid"]
-custom_minimum_size = Vector2(200, 300)
+[node name="ItemPrice" type="Label" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "500 coins"
+horizontal_alignment = 1
 
-[node name="ItemName2" type="Label" parent="TabContainer/Items/ScrollContainer/ItemsGrid/ItemCard2"]
-layout_mode = 0
-offset_left = 60.0
-offset_top = 25.0
-offset_right = 108.0
-offset_bottom = 48.0
-text = "Health"
-
-[node name="ItemCard3" type="Control" parent="TabContainer/Items/ScrollContainer/ItemsGrid"]
-custom_minimum_size = Vector2(200, 300)
+[node name="BuyButton" type="Button" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="ItemName3" type="Label" parent="TabContainer/Items/ScrollContainer/ItemsGrid/ItemCard3"]
-layout_mode = 0
-offset_left = 60.0
-offset_top = 25.0
-offset_right = 108.0
-offset_bottom = 48.0
-text = "Speed"
-
-[node name="ItemCard4" type="Control" parent="TabContainer/Items/ScrollContainer/ItemsGrid"]
-custom_minimum_size = Vector2(200, 300)
-layout_mode = 2
-
-[node name="ItemName1" type="Label" parent="TabContainer/Items/ScrollContainer/ItemsGrid/ItemCard4"]
-layout_mode = 0
-offset_left = 60.0
-offset_top = 25.0
-offset_right = 108.0
-offset_bottom = 48.0
-text = "Shield"
-
-[node name="ItemCard5" type="Control" parent="TabContainer/Items/ScrollContainer/ItemsGrid"]
-custom_minimum_size = Vector2(200, 300)
-layout_mode = 2
-
-[node name="ItemName2" type="Label" parent="TabContainer/Items/ScrollContainer/ItemsGrid/ItemCard5"]
-layout_mode = 0
-offset_left = 60.0
-offset_top = 25.0
-offset_right = 108.0
-offset_bottom = 48.0
-text = "Health"
-
-[node name="ItemCard6" type="Control" parent="TabContainer/Items/ScrollContainer/ItemsGrid"]
-custom_minimum_size = Vector2(200, 300)
-layout_mode = 2
-
-[node name="ItemName3" type="Label" parent="TabContainer/Items/ScrollContainer/ItemsGrid/ItemCard6"]
-layout_mode = 0
-offset_left = 60.0
-offset_top = 25.0
-offset_right = 108.0
-offset_bottom = 48.0
-text = "Speed"
-
-[node name="ItemCard7" type="Control" parent="TabContainer/Items/ScrollContainer/ItemsGrid"]
-custom_minimum_size = Vector2(200, 300)
-layout_mode = 2
-
-[node name="ItemName1" type="Label" parent="TabContainer/Items/ScrollContainer/ItemsGrid/ItemCard7"]
-layout_mode = 0
-offset_left = 60.0
-offset_top = 25.0
-offset_right = 108.0
-offset_bottom = 48.0
-text = "Shield"
-
-[node name="ItemCard8" type="Control" parent="TabContainer/Items/ScrollContainer/ItemsGrid"]
-custom_minimum_size = Vector2(200, 300)
-layout_mode = 2
-
-[node name="ItemName2" type="Label" parent="TabContainer/Items/ScrollContainer/ItemsGrid/ItemCard8"]
-layout_mode = 0
-offset_left = 60.0
-offset_top = 25.0
-offset_right = 108.0
-offset_bottom = 48.0
-text = "Health"
-
-[node name="ItemCard9" type="Control" parent="TabContainer/Items/ScrollContainer/ItemsGrid"]
-custom_minimum_size = Vector2(200, 300)
-layout_mode = 2
-
-[node name="ItemName3" type="Label" parent="TabContainer/Items/ScrollContainer/ItemsGrid/ItemCard9"]
-layout_mode = 0
-offset_left = 60.0
-offset_top = 25.0
-offset_right = 108.0
-offset_bottom = 48.0
-text = "Speed"
+theme_override_font_sizes/font_size = 18
+text = "Buy"
 
 [node name="Skins" type="VBoxContainer" parent="TabContainer"]
 visible = false
@@ -191,6 +184,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
+horizontal_scroll_mode = 3
+scroll_deadzone = 10
 
 [node name="SkinsGrid" type="HBoxContainer" parent="TabContainer/Skins/ScrollContainer"]
 layout_mode = 2
