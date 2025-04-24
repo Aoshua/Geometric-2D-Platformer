@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://edh5q37jsym4"]
+[gd_scene load_steps=10 format=3 uid="uid://edh5q37jsym4"]
 
 [ext_resource type="Script" path="res://src/ui/menus/shop.gd" id="1_0tgnb"]
 [ext_resource type="Texture2D" uid="uid://b7n1ifr3tdfcc" path="res://assets/background.png" id="2_pyi5n"]
 [ext_resource type="Texture2D" uid="uid://dbugxyfskhd5a" path="res://assets/force-field.png" id="3_6ovbw"]
-[ext_resource type="Texture2D" uid="uid://your_coin_texture_id" path="res://assets/coin.png" id="4_coin"]
+[ext_resource type="Texture2D" uid="uid://dxpfsxh0is0gx" path="res://assets/coin.png" id="4_coin"]
 
 [sub_resource type="Theme" id="Theme_hek2r"]
 default_font_size = 102
@@ -34,7 +34,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_indigo"]
-bg_color = Color(0.294, 0.0, 0.51, 1.0)
+bg_color = Color(0.294, 0, 0.51, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -42,6 +42,8 @@ corner_radius_bottom_left = 4
 
 [node name="Shop" type="CanvasLayer"]
 script = ExtResource("1_0tgnb")
+metadata/_edit_vertical_guides_ = [1140.0, 570.0]
+metadata/_edit_horizontal_guides_ = [-200.0]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -105.0
@@ -69,15 +71,35 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -300.0
-offset_top = -10.0
+offset_top = -20.0
 offset_right = 261.0
-offset_bottom = 73.0
+offset_bottom = 63.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_hek2r")
 theme_override_font_sizes/font_size = 60
 text = "Spend Those Coins!"
 horizontal_alignment = 1
+
+[node name="CoinsContainer" type="HBoxContainer" parent="Header"]
+offset_left = -40.0
+offset_top = 86.0
+offset_right = 41.0
+offset_bottom = 121.0
+alignment = 1
+
+[node name="CoinIcon" type="TextureRect" parent="Header/CoinsContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture = ExtResource("4_coin")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CurrentCoinsLabel" type="Label" parent="Header/CoinsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "500"
+vertical_alignment = 1
 
 [node name="TabContainer" type="TabContainer" parent="."]
 anchors_preset = 15
@@ -189,9 +211,9 @@ layout_mode = 2
 
 [node name="BuyButton" type="Button" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_indigo")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Buy"
 
 [node name="Skins" type="VBoxContainer" parent="TabContainer"]
