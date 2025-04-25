@@ -26,7 +26,7 @@ func bank_coins():
 
 
 func update_coin_label():
-	%CoinsLabel.text = "Coins: " + str(current_coins).pad_zeros(3)
+	%CoinsLabel.text = "Coins: " + str(current_coins).pad_zeros(4)
 
 
 func update_shield_ui(showShield: bool):

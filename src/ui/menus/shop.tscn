@@ -1,12 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://edh5q37jsym4"]
+[gd_scene load_steps=12 format=3 uid="uid://edh5q37jsym4"]
 
 [ext_resource type="Script" path="res://src/ui/menus/shop.gd" id="1_0tgnb"]
 [ext_resource type="Texture2D" uid="uid://b7n1ifr3tdfcc" path="res://assets/background.png" id="2_pyi5n"]
 [ext_resource type="Texture2D" uid="uid://dbugxyfskhd5a" path="res://assets/force-field.png" id="3_6ovbw"]
 [ext_resource type="Texture2D" uid="uid://dxpfsxh0is0gx" path="res://assets/coin.png" id="4_coin"]
+[ext_resource type="Texture2D" uid="uid://cqw7il6drpl5" path="res://assets/buttons/x_mark.png" id="4_n104a"]
 
 [sub_resource type="Theme" id="Theme_hek2r"]
 default_font_size = 102
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a1p0b"]
+radius = 233.4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8w5j"]
 content_margin_left = 25.0
@@ -42,7 +46,7 @@ corner_radius_bottom_left = 4
 
 [node name="Shop" type="CanvasLayer"]
 script = ExtResource("1_0tgnb")
-metadata/_edit_vertical_guides_ = [1140.0, 570.0]
+metadata/_edit_vertical_guides_ = [1154.0, 577.0]
 metadata/_edit_horizontal_guides_ = [-200.0]
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -82,6 +86,7 @@ text = "Spend Those Coins!"
 horizontal_alignment = 1
 
 [node name="CoinsContainer" type="HBoxContainer" parent="Header"]
+layout_mode = 0
 offset_left = -40.0
 offset_top = 86.0
 offset_right = 41.0
@@ -96,10 +101,26 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="CurrentCoinsLabel" type="Label" parent="Header/CoinsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "500"
 vertical_alignment = 1
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Control"]
+position = Vector2(-35, 35)
+scale = Vector2(0.22, 0.22)
+texture_normal = ExtResource("4_n104a")
+shape = SubResource("CircleShape2D_a1p0b")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 anchors_preset = 15
@@ -247,3 +268,5 @@ offset_top = 25.0
 offset_right = 108.0
 offset_bottom = 48.0
 text = "Ninja"
+
+[connection signal="pressed" from="Control/TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]
