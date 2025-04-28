@@ -16,25 +16,25 @@ var shop_items = [
 		"icon": preload("res://assets/force-field.png")
 	},
 		{
-		"id": "shield",
+		"id": "shield3",
 		"name": "Shield", 
 		"price": 500,
 		"icon": preload("res://assets/force-field.png")
 	},
 	{
-		"id": "shield2",
+		"id": "shield4",
 		"name": "Shield 2", 
 		"price": 500,
 		"icon": preload("res://assets/force-field.png")
 	},
 		{
-		"id": "shield",
+		"id": "shiel5",
 		"name": "Shield", 
 		"price": 500,
 		"icon": preload("res://assets/force-field.png")
 	},
 	{
-		"id": "shield2",
+		"id": "shield6",
 		"name": "Shield 2", 
 		"price": 500,
 		"icon": preload("res://assets/force-field.png")
@@ -43,7 +43,7 @@ var shop_items = [
 
 
 func _ready():
-	%CurrentCoinsLabel.text = Formatters.format_number_with_commas(Global.coins)
+	set_coins_label()
 	var items_grid = $ShopContainer/ItemsContainer/ScrollContainer/MarginContainer/ItemsGrid
 	
 	for item in shop_items:
@@ -56,11 +56,25 @@ func _ready():
 		items_grid.add_child(card)
 
 
-func _on_item_buy_pressed(item_id):
+func set_coins_label():
+	%CurrentCoinsLabel.text = Formatters.format_number_with_commas(Global.coins)
+
+
+func _on_item_buy_pressed(item_id: String):
 	print("Bought item: " + item_id)
-	# Check if player has enough coins
-	# Deduct coins
-	# Add item to inventory
+	var item = find_item_by_id(item_id)
+	if Global.coins >= item.price:
+		Global.remove_coins(item.price)
+		set_coins_label()
+		if item_id == "shield":
+			Global.add_shield()
+
+
+func find_item_by_id(item_id: String):
+	for item in shop_items:
+		if item.id == item_id:
+			return item
+	return null
 
 
 func _on_touch_screen_button_pressed():

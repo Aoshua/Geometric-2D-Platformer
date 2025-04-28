@@ -49,7 +49,7 @@ func load_game():
 	# Set unlocked levels, defaulting to level 1 if not found
 	unlocked_levels = json.data.get("unlocked_levels", 1)
 	coins = json.data.get("coins", 0)
-	shields = 1 #json.data.get("shields", 1) # TODO: Change to 0 after testing
+	shields = json.data.get("shields", 0)
 	print("Unlocked levels loaded: " + str(unlocked_levels))
 	print("Coins loaded: " + str(coins))
 	print("Shields loaded: " + str(shields))
@@ -75,6 +75,16 @@ func navigate_to_current_level():
 
 func add_coins(level_coins: int):
 	coins += level_coins
+	save_game()
+
+
+func remove_coins(coins_to_remove: int):
+	coins -= coins_to_remove
+	save_game
+
+
+func add_shield():
+	shields += 1
 	save_game()
 
 

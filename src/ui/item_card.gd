@@ -10,6 +10,7 @@ signal buy_pressed(item_id)
 
 func _ready():
 	update_display()
+	$PanelContainer/MarginContainer/VBoxContainer/BuyButton.connect("pressed", _on_buy_button_pressed)
 
 func update_display():
 	$PanelContainer/MarginContainer/VBoxContainer/ItemName.text = item_name
