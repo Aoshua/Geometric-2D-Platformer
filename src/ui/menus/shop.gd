@@ -65,4 +65,3 @@ func _on_item_buy_pressed(item_id):
 
 func _on_touch_screen_button_pressed():
 	get_tree().change_scene_to_file("res://src/ui/menus/main_menu.tscn")
-	queue_free()
