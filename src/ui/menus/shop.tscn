@@ -1,53 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://edh5q37jsym4"]
+[gd_scene load_steps=7 format=3 uid="uid://edh5q37jsym4"]
 
 [ext_resource type="Script" path="res://src/ui/menus/shop.gd" id="1_0tgnb"]
 [ext_resource type="Texture2D" uid="uid://b7n1ifr3tdfcc" path="res://assets/background.png" id="2_pyi5n"]
-[ext_resource type="Texture2D" uid="uid://dbugxyfskhd5a" path="res://assets/force-field.png" id="3_6ovbw"]
+[ext_resource type="Texture2D" uid="uid://cfulumnfwlffh" path="res://assets/buttons/chevron_left_button_small.png" id="3_m6vd8"]
 [ext_resource type="Texture2D" uid="uid://dxpfsxh0is0gx" path="res://assets/coin.png" id="4_coin"]
-[ext_resource type="Texture2D" uid="uid://cqw7il6drpl5" path="res://assets/buttons/x_mark.png" id="4_n104a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a1p0b"]
+radius = 90.82
 
 [sub_resource type="Theme" id="Theme_hek2r"]
 default_font_size = 102
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_a1p0b"]
-radius = 233.4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8w5j"]
-content_margin_left = 25.0
-content_margin_top = 15.0
-content_margin_right = 25.0
-content_margin_bottom = 15.0
-bg_color = Color(0.2, 0.2, 0.2, 0.8)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yucl"]
-content_margin_left = 25.0
-content_margin_top = 15.0
-content_margin_right = 25.0
-content_margin_bottom = 15.0
-bg_color = Color(0.1, 0.1, 0.1, 0.9)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
-bg_color = Color(0.12, 0.12, 0.14, 0.9)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_indigo"]
-bg_color = Color(0.294, 0, 0.51, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
 [node name="Shop" type="CanvasLayer"]
 script = ExtResource("1_0tgnb")
-metadata/_edit_vertical_guides_ = [1154.0, 577.0]
-metadata/_edit_horizontal_guides_ = [-200.0]
+metadata/_edit_vertical_guides_ = [1154.0, 577.0, -136.0]
+metadata/_edit_horizontal_guides_ = [-200.0, 60.0]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -105.0
@@ -56,18 +23,30 @@ offset_right = 1815.0
 offset_bottom = 973.0
 texture = ExtResource("2_pyi5n")
 
-[node name="Header" type="Control" parent="."]
+[node name="BackButtonControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="BackButtonControl"]
+position = Vector2(31, 32)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("3_m6vd8")
+shape = SubResource("CircleShape2D_a1p0b")
+
+[node name="HeaderControl" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -4.0
-offset_top = 16.0
+offset_top = 12.0
 offset_right = 36.0
-offset_bottom = 56.0
+offset_bottom = 52.0
 grow_horizontal = 2
 
-[node name="ShopLabel" type="Label" parent="Header"]
+[node name="ShopLabel" type="Label" parent="HeaderControl"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -85,63 +64,52 @@ theme_override_font_sizes/font_size = 60
 text = "Spend Those Coins!"
 horizontal_alignment = 1
 
-[node name="CoinsContainer" type="HBoxContainer" parent="Header"]
+[node name="CoinsContainer" type="HBoxContainer" parent="HeaderControl"]
 layout_mode = 0
-offset_left = -40.0
-offset_top = 86.0
-offset_right = 41.0
-offset_bottom = 121.0
+offset_left = -52.0
+offset_top = 79.0
+offset_right = 53.0
+offset_bottom = 114.0
+theme_override_constants/separation = 8
 alignment = 1
 
-[node name="CoinIcon" type="TextureRect" parent="Header/CoinsContainer"]
+[node name="CoinIcon" type="TextureRect" parent="HeaderControl/CoinsContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 texture = ExtResource("4_coin")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="CurrentCoinsLabel" type="Label" parent="Header/CoinsContainer"]
+[node name="CurrentCoinsLabel" type="Label" parent="HeaderControl/CoinsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "500"
+text = "5,000"
 vertical_alignment = 1
 
-[node name="Control" type="Control" parent="."]
+[node name="ShopContainer" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
-
-[node name="TouchScreenButton" type="TouchScreenButton" parent="Control"]
-position = Vector2(-35, 35)
-scale = Vector2(0.22, 0.22)
-texture_normal = ExtResource("4_n104a")
-shape = SubResource("CircleShape2D_a1p0b")
-
-[node name="TabContainer" type="TabContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 10.0
-offset_top = 80.0
+offset_top = 86.0
 offset_right = -10.0
-offset_bottom = -10.0
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 28
-theme_override_styles/tab_selected = SubResource("StyleBoxFlat_o8w5j")
-theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_7yucl")
 
-[node name="Items" type="VBoxContainer" parent="TabContainer"]
-layout_mode = 2
+[node name="ItemsContainer" type="VBoxContainer" parent="ShopContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Items"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ShopContainer/ItemsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -149,124 +117,17 @@ follow_focus = true
 horizontal_scroll_mode = 3
 scroll_deadzone = 10
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Items/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ShopContainer/ItemsContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_right = 25
 
-[node name="ItemsGrid" type="HBoxContainer" parent="TabContainer/Items/ScrollContainer/MarginContainer"]
+[node name="ItemsGrid" type="HBoxContainer" parent="ShopContainer/ItemsContainer/ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 
-[node name="ItemCard1" type="Control" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid"]
-custom_minimum_size = Vector2(300, 380)
-layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -125.0
-offset_top = -159.0
-offset_right = 125.0
-offset_bottom = 166.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_card")
-
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1/PanelContainer/MarginContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="CenterContainer" type="CenterContainer" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ItemSprite" type="TextureRect" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1/PanelContainer/MarginContainer/VBoxContainer/CenterContainer"]
-custom_minimum_size = Vector2(140, 140)
-layout_mode = 2
-texture = ExtResource("3_6ovbw")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="ItemName" type="Label" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 26
-text = "Shield"
-horizontal_alignment = 1
-
-[node name="PriceContainer" type="HBoxContainer" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="CoinIcon" type="TextureRect" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1/PanelContainer/MarginContainer/VBoxContainer/PriceContainer"]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-texture = ExtResource("4_coin")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="ItemPrice" type="Label" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1/PanelContainer/MarginContainer/VBoxContainer/PriceContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "500"
-vertical_alignment = 1
-
-[node name="Spacer2" type="Control" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1/PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
-[node name="BuyButton" type="Button" parent="TabContainer/Items/ScrollContainer/MarginContainer/ItemsGrid/ItemCard1/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_indigo")
-text = "Buy"
-
-[node name="Skins" type="VBoxContainer" parent="TabContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Skins"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-follow_focus = true
-horizontal_scroll_mode = 3
-scroll_deadzone = 10
-
-[node name="SkinsGrid" type="HBoxContainer" parent="TabContainer/Skins/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 20
-
-[node name="SkinCard1" type="Control" parent="TabContainer/Skins/ScrollContainer/SkinsGrid"]
-custom_minimum_size = Vector2(200, 300)
-layout_mode = 2
-
-[node name="SkinName1" type="Label" parent="TabContainer/Skins/ScrollContainer/SkinsGrid/SkinCard1"]
-layout_mode = 0
-offset_left = 60.0
-offset_top = 25.0
-offset_right = 108.0
-offset_bottom = 48.0
-text = "Ninja"
-
-[connection signal="pressed" from="Control/TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]
+[connection signal="pressed" from="BackButtonControl/TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]
