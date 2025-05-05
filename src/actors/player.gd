@@ -1,6 +1,10 @@
 extends Actor
 
 @export var stomp_impulse = 500.0
+@export var green_texture: Texture2D
+@export var blue_texture: Texture2D
+@export var pink_texture: Texture2D
+
 const JUMP_FORCE = 1300.0
 const MOVE_SPEED = 800.0
 const GRAVITY = 3000.0
@@ -10,6 +14,7 @@ var current_coins = 0
 var shield_active = false
 
 func _ready():
+	update_skin()
 	update_coin_label()
 	update_shield_ui(false)
 
@@ -23,6 +28,16 @@ func collect_coin():
 # Called by portal on collision
 func bank_coins():
 	Global.add_coins(current_coins)
+
+
+func update_skin():
+	match Global.current_skin:
+		Global.PlayerSkins.GREEN:
+			%PlayerSkin.texture = green_texture
+		Global.PlayerSkins.BLUE:
+			%PlayerSkin.texture = blue_texture
+		Global.PlayerSkins.PINK:
+			%PlayerSkin.texture = pink_texture
 
 
 func update_coin_label():

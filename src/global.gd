@@ -1,20 +1,25 @@
 extends Node
 
+enum PlayerSkins { GREEN, BLUE, PINK}
+
 var unlocked_levels = 1
 var coins = 0
 var shields = 0
+var current_skin = PlayerSkins.GREEN
+var unlocked_skins = [PlayerSkins.GREEN]
 
 signal coins_changed
 
 # Path to the save file. For mobile and desktop, this saves to a user-specific directory.
 const SAVE_PATH = "user://save_game.json"
 
-
 func save_game():
 	var save_data = {
 		"unlocked_levels": unlocked_levels,
 		"coins": coins,
-		"shields": shields
+		"shields": shields,
+		"current_skin": current_skin,
+		"unlocked_skins": unlocked_skins
 	}
 
 	# Open the file for writing
@@ -46,10 +51,12 @@ func load_game():
 		print("Failed to parse save file.")
 		return
 	
-	# Set unlocked levels, defaulting to level 1 if not found
+	# Set saved values, setting a default if no value found
 	unlocked_levels = json.data.get("unlocked_levels", 1)
 	coins = json.data.get("coins", 0)
 	shields = json.data.get("shields", 0)
+	current_skin = json.data.get("current_skin", PlayerSkins.GREEN)
+	unlocked_skins = json.data.get("unlocked_skins", [PlayerSkins.GREEN])
 	print("Unlocked levels loaded: " + str(unlocked_levels))
 	print("Coins loaded: " + str(coins))
 	print("Shields loaded: " + str(shields))
@@ -91,3 +98,7 @@ func add_shield():
 func use_shield():
 	shields -= 1
 	save_game()
+	
+
+#func unlock_skin(skin: PlayerSkins):
+	#

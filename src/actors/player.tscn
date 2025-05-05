@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bunoo8gsksr0h"]
+[gd_scene load_steps=14 format=3 uid="uid://bunoo8gsksr0h"]
 
 [ext_resource type="Script" path="res://src/actors/player.gd" id="1_34e7d"]
 [ext_resource type="Texture2D" uid="uid://ba6lkcbsi6bg2" path="res://assets/player.png" id="1_gc24r"]
+[ext_resource type="Texture2D" uid="uid://bqf77pbvdlhg4" path="res://assets/player-blue.png" id="2_j8s5a"]
+[ext_resource type="Texture2D" uid="uid://c210e4md2odrr" path="res://assets/player-pink.png" id="2_rqcuv"]
 [ext_resource type="PackedScene" uid="uid://br2wdw0ip7pdg" path="res://src/ui/joystick.tscn" id="3_ca37w"]
 [ext_resource type="PackedScene" uid="uid://d1bkh1hpd2lvv" path="res://src/objects/shield.tscn" id="3_p81qi"]
 [ext_resource type="PackedScene" uid="uid://bln2swwe26jf2" path="res://src/ui/jump_button.tscn" id="4_jkb2p"]
@@ -24,14 +26,17 @@ radius = 197.95
 collision_mask = 14
 script = ExtResource("1_34e7d")
 stomp_impulse = 600.0
+green_texture = ExtResource("1_gc24r")
+blue_texture = ExtResource("2_j8s5a")
+pink_texture = ExtResource("2_rqcuv")
 metadata/_edit_vertical_guides_ = [1152.0]
 metadata/_edit_horizontal_guides_ = [611.0]
 
-[node name="Player" type="Sprite2D" parent="."]
+[node name="PlayerSkin" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(0, -48)
-texture = ExtResource("1_gc24r")
 
-[node name="Shield" parent="Player" instance=ExtResource("3_p81qi")]
+[node name="Shield" parent="PlayerSkin" instance=ExtResource("3_p81qi")]
 unique_name_in_owner = true
 visible = false
 

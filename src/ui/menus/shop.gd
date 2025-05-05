@@ -6,7 +6,7 @@ var shop_items = [
 	{
 		"id": "shield",
 		"name": "Shield", 
-		"price": 500,
+		"price": 200,
 		"icon": preload("res://assets/force-field.png")
 	},
 	{
