@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxji1mubneh16"]
+
+[ext_resource type="Script" path="res://src/ui/menus/alert_menu.gd" id="1_d80rb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6i8uj"]
+bg_color = Color(0.282353, 0.356863, 0.921569, 1)
+
+[node name="AlertMenu" type="CanvasLayer"]
+script = ExtResource("1_d80rb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.396078)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -100.0
+offset_right = 250.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.120246, 0.117892, 0.182274, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Card"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/Card/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "Insufficient coins!"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Control/Card/VBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_6i8uj")
+text = "OK"
+
+[connection signal="pressed" from="Control/Card/VBoxContainer/Button" to="." method="_on_button_pressed"]

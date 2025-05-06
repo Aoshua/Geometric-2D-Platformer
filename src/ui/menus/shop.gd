@@ -47,7 +47,7 @@ func load_items():
 	if (Global.unlocked_skins.has(Global.PlayerSkins.PINK)):
 		if (Global.current_skin == Global.PlayerSkins.PINK):
 			pinkSkin["button_text"] = "Equipped"
-			pinkSkin["button_disabled"] = false
+			pinkSkin["button_disabled"] = true
 		else:
 			pinkSkin["button_text"] = "Equip"
 	shop_items.push_back(pinkSkin)
@@ -111,6 +111,18 @@ func _on_item_buy_pressed(item_id: String):
 				Global.unlock_skin(Global.PlayerSkins.PINK)
 			elif item_id == 'green-skin':
 				Global.unlock_skin(Global.PlayerSkins.GREEN)
+		else:
+			var alert = load("res://src/ui/menus/alert_menu.tscn").instantiate()
+			alert.label = "Insufficient coins!"
+			alert.process_mode = Node.PROCESS_MODE_ALWAYS
+			get_tree().root.add_child(alert)
+			#var dialog = AcceptDialog.new()
+			#dialog.dialog_text = "Insufficient coins!"
+			##dialog.window_title = ""
+			#dialog.get_ok_button().text = "OK"
+			#add_child(dialog)
+			#dialog.connect("confirmed", Callable(dialog, "queue_free"))
+			#dialog.popup_centered()
 	elif (item["button_text"] == "Equip"):
 		if (item_id == "blue-skin"):
 			Global.equip_skin(Global.PlayerSkins.BLUE)
