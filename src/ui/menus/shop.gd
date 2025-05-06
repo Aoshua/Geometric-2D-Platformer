@@ -102,6 +102,7 @@ func _on_item_buy_pressed(item_id: String):
 	if (!"button_text" in item):
 		if Global.coins >= item.price:
 			Global.remove_coins(item.price)
+			SoundManager.play_sound("item-purchased")
 			set_coins_label()
 			if item_id == "shield":
 				Global.add_shield()

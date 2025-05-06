@@ -21,6 +21,7 @@ func _ready():
 
 # Called by coin on collision
 func collect_coin():
+	SoundManager.play_sound("coin-grabbed")
 	current_coins += 1
 	update_coin_label()
 
@@ -66,6 +67,7 @@ func _on_enemy_detector_area_entered(area: Area2D) -> void:
 
 func _on_enemy_detector_body_entered(body: Node2D) -> void:
 	if shield_active:
+		SoundManager.play_sound("shield-activated")
 		# Calculate the normalized vector from the enemy to the player.
 		var bounce_dir = (global_position - body.global_position).normalized()
 		var bounce_distance = 50
@@ -105,6 +107,8 @@ func _on_enemy_detector_body_entered(body: Node2D) -> void:
 		return
 	
 	is_dead = true # Disable player rather than destroying
+	MusicManager.pause_music()
+	SoundManager.play_sound("game-over", -10)
 	
 	process_mode = Node.PROCESS_MODE_DISABLED
 	visible = false
@@ -159,6 +163,7 @@ func _physics_process(delta: float) -> void:
 	# If the player is on the floor and the jump button is pressed, set vertical velocity for jump
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y = -JUMP_FORCE
+		SoundManager.play_sound("jump", -15)
 	
 	# If the jump button is released while moving up (jump interrupted)
 	if Input.is_action_just_released("jump") and velocity.y < 0.0:
@@ -204,6 +209,7 @@ func calculate_stomp_velocity(linear_velocity: Vector2, impulse: float) -> Vecto
 
 
 func _on_shield_button_pressed():
+	SoundManager.play_sound("shield-activated")
 	Global.use_shield()
 	shield_active = true
 	update_shield_ui(true)

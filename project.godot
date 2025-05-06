@@ -20,6 +20,7 @@ config/icon="res://icon.png"
 Global="*res://src/global.gd"
 MusicManager="*res://src/music_manager.gd"
 Formatters="*res://src/formatters.gd"
+SoundManager="*res://src/sound_manager.gd"
 
 [editor_plugins]
 

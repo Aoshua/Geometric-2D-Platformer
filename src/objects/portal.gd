@@ -9,7 +9,8 @@ extends Area2D
 func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("bank_coins"):
 		body.bank_coins()
-		
+	
+	SoundManager.play_sound("teleport")
 	teleport() # Doesn't currently distinguish between player and enemy
 
 

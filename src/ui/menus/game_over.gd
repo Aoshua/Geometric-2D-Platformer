@@ -9,6 +9,7 @@ var loading_overlay: CanvasLayer
 var player_ref = null
 
 func _on_reset_button_pressed():
+	MusicManager.resume_music()
 	get_tree().reload_current_scene()
 	queue_free()
 
@@ -33,6 +34,7 @@ func _on_reset_button_pressed():
 
 
 func _on_main_menu_button_pressed():
+	MusicManager.resume_music()
 	get_tree().change_scene_to_file("res://src/ui/menus/main_menu.tscn")
 	queue_free()
 
