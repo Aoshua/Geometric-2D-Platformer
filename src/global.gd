@@ -1,6 +1,6 @@
 extends Node
 
-enum PlayerSkins { GREEN, BLUE, PINK}
+enum PlayerSkins { GREEN, BLUE, PINK }
 
 var unlocked_levels = 1
 var coins = 0
@@ -18,8 +18,8 @@ func save_game():
 		"unlocked_levels": unlocked_levels,
 		"coins": coins,
 		"shields": shields,
-		"current_skin": current_skin,
-		"unlocked_skins": unlocked_skins
+		"current_skin": PlayerSkins.keys()[current_skin],
+		"unlocked_skins": unlocked_skins.map(func(skin): return PlayerSkins.keys()[skin])
 	}
 
 	# Open the file for writing
@@ -55,8 +55,14 @@ func load_game():
 	unlocked_levels = json.data.get("unlocked_levels", 1)
 	coins = json.data.get("coins", 0)
 	shields = json.data.get("shields", 0)
-	current_skin = json.data.get("current_skin", PlayerSkins.GREEN)
-	unlocked_skins = json.data.get("unlocked_skins", [PlayerSkins.GREEN])
+	current_skin = PlayerSkins[json.data.get("current_skin", "GREEN")]
+	
+	# Convert array of string keys back to array of enum values
+	var skin_keys = json.data.get("unlocked_skins", ["GREEN"])
+	unlocked_skins = []
+	for key in skin_keys:
+		unlocked_skins.append(PlayerSkins[key])
+	
 	print("Unlocked levels loaded: " + str(unlocked_levels))
 	print("Coins loaded: " + str(coins))
 	print("Shields loaded: " + str(shields))
@@ -100,5 +106,15 @@ func use_shield():
 	save_game()
 	
 
-#func unlock_skin(skin: PlayerSkins):
-	#
+
+func unlock_skin(skin: PlayerSkins):
+	if (unlocked_skins.has(skin) == false):
+		unlocked_skins.push_back(skin)
+		current_skin = skin
+		save_game()
+		
+
+
+func equip_skin(skin: PlayerSkins):
+	current_skin = skin
+	save_game()
