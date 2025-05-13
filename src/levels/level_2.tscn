@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b40h2s0cuixw0"]
+[gd_scene load_steps=11 format=3 uid="uid://b40h2s0cuixw0"]
 
 [ext_resource type="Texture2D" uid="uid://b7n1ifr3tdfcc" path="res://assets/background.png" id="1_rcj46"]
 [ext_resource type="Script" path="res://src/levels/level_2.gd" id="1_xykie"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bunoo8gsksr0h" path="res://src/actors/player.tscn" id="3_ngop4"]
 [ext_resource type="PackedScene" uid="uid://cjt1eiom1a251" path="res://src/objects/coin.tscn" id="4_8nsty"]
 [ext_resource type="PackedScene" uid="uid://dvuyxdodrur0k" path="res://src/actors/enemy.tscn" id="5_qpdrh"]
+[ext_resource type="PackedScene" uid="uid://0pbs8li3x75e" path="res://src/objects/portal.tscn" id="7_c2asa"]
+[ext_resource type="PackedScene" uid="uid://br2akargb80ha" path="res://src/levels/level_3.tscn" id="8_fah1d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gu6un"]
 texture = ExtResource("2_ne67v")
@@ -90,10 +92,10 @@ position = Vector2(5776, 568)
 position = Vector2(5312, 576)
 
 [node name="Enemy" parent="." instance=ExtResource("5_qpdrh")]
-position = Vector2(1227, 663)
+position = Vector2(1352, 663)
 
 [node name="Enemy2" parent="." instance=ExtResource("5_qpdrh")]
-position = Vector2(2198, 664)
+position = Vector2(2328, 664)
 
 [node name="Enemy3" parent="." instance=ExtResource("5_qpdrh")]
 position = Vector2(3168, 664)
@@ -103,3 +105,8 @@ position = Vector2(4306, 261)
 
 [node name="Enemy5" parent="." instance=ExtResource("5_qpdrh")]
 position = Vector2(4092, 663)
+
+[node name="Portal" parent="." instance=ExtResource("7_c2asa")]
+position = Vector2(7352, 632)
+next_scene = ExtResource("8_fah1d")
+current_level = 2

@@ -117,13 +117,6 @@ func _on_item_buy_pressed(item_id: String):
 			alert.label = "Insufficient coins!"
 			alert.process_mode = Node.PROCESS_MODE_ALWAYS
 			get_tree().root.add_child(alert)
-			#var dialog = AcceptDialog.new()
-			#dialog.dialog_text = "Insufficient coins!"
-			##dialog.window_title = ""
-			#dialog.get_ok_button().text = "OK"
-			#add_child(dialog)
-			#dialog.connect("confirmed", Callable(dialog, "queue_free"))
-			#dialog.popup_centered()
 	elif (item["button_text"] == "Equip"):
 		if (item_id == "blue-skin"):
 			Global.equip_skin(Global.PlayerSkins.BLUE)
