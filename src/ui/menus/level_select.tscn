@@ -1,9 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxiblux2c5vm2"]
+[gd_scene load_steps=4 format=3 uid="uid://bxiblux2c5vm2"]
 
 [ext_resource type="Script" path="res://src/ui/menus/level_select.gd" id="1_5bxd8"]
 [ext_resource type="Texture2D" uid="uid://b7n1ifr3tdfcc" path="res://assets/background.png" id="2_e72n5"]
-[ext_resource type="Texture2D" uid="uid://um3nrnvfvsp7" path="res://assets/buttons/chevron_button.png" id="3_n0d1y"]
-[ext_resource type="Texture2D" uid="uid://c6tqh3d7hgrp0" path="res://assets/buttons/chevron_left_button.png" id="3_wax42"]
 
 [sub_resource type="Theme" id="Theme_hek2r"]
 default_font_size = 102
@@ -57,59 +55,32 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -400.0
+offset_top = -100.0
+offset_right = 400.0
+offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Control"]
+unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
+vertical_scroll_mode = 0
 
-[node name="Control" type="Control" parent="Control/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/ScrollContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+theme_override_constants/margin_bottom = 20
+
+[node name="GridContainer" type="GridContainer" parent="Control/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 4
-
-[node name="LeftButton" type="TouchScreenButton" parent="Control/HBoxContainer/Control"]
-unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0.764706)
-position = Vector2(-202, 20)
-scale = Vector2(0.4, 0.4)
-texture_normal = ExtResource("3_wax42")
-
-[node name="GridContainer" type="GridContainer" parent="Control/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
-columns = 6
-
-[node name="Control2" type="Control" parent="Control/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="RightButton" type="TouchScreenButton" parent="Control/HBoxContainer/Control2"]
-unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0.776471)
-position = Vector2(104, 20)
-scale = Vector2(0.4, 0.4)
-texture_normal = ExtResource("3_n0d1y")
-
-[connection signal="pressed" from="Control/HBoxContainer/Control/LeftButton" to="." method="_on_left_button_pressed"]
-[connection signal="pressed" from="Control/HBoxContainer/Control2/RightButton" to="." method="_on_right_button_pressed"]
+columns = 7

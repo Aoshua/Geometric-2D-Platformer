@@ -1,55 +1,74 @@
 extends CanvasLayer
 
 var levels_path = "res://src/levels"
-var total_levels = 19 # Actual value is 7
+var total_levels = 50 # Actual value is 7
 var rows = 3
-var columns = 6
-var levels_per_page = rows * columns
-var current_page = 0
-var total_pages = int(ceil(float(total_levels) / levels_per_page))
 
 @onready var level_button_scene = preload("res://src/ui/level_button.tscn")
+@onready var scroll_container: ScrollContainer
+@onready var grid_container: GridContainer
 
 func _ready():
-	current_page = int(Global.unlocked_levels / levels_per_page) # Determine initial page
-	update_grid()
+	setup_scroll_container()
+	populate_grid()
+	# Scroll to show the current unlocked level after a frame
+	call_deferred("scroll_to_current_level")
 
-
-func _on_left_button_pressed():
-	if current_page > 0:
-		current_page -= 1
-		update_grid()
-
-
-func _on_right_button_pressed():
-	if current_page < total_pages - 1:
-		current_page += 1
-		update_grid()
-
-
-func update_grid():
-	# Empty grid of old buttons
-	for child in %GridContainer.get_children():
-		%GridContainer.remove_child(child)
-		child.queue_free()  # Free the memory
+func setup_scroll_container():
+	scroll_container = %ScrollContainer
+	grid_container = %GridContainer
+	grid_container.offset_bottom = 50.0
 	
-	var start_index = current_page * levels_per_page
-	var end_index = min(start_index + levels_per_page, total_levels)
+	# Configure ScrollContainer
+	scroll_container.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+	scroll_container.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll_container.follow_focus = true
 	
-	for i in range(start_index, end_index):
-		var level_button = level_button_scene.instantiate()
+	# Configure GridContainer for horizontal layout
+	var columns_needed = int(ceil(float(total_levels) / rows))
+	grid_container.columns = columns_needed
 
-		# Determine if this level is unlocked
-		if i < Global.unlocked_levels:
-			level_button.set_level(i + 1, true)  # Unlocked
-		else:
-			level_button.set_level(i + 1, false)  # Locked
-
-		%GridContainer.add_child(level_button)
+func populate_grid():
+	# Clear existing buttons
+	for child in grid_container.get_children():
+		grid_container.remove_child(child)
+		child.queue_free()
 	
-	update_button_states()
+	# Create buttons in column-major order (down first, then right)
+	for col in range(int(ceil(float(total_levels) / rows))):
+		for row in range(rows):
+			var level_index = col * rows + row
+			
+			if level_index >= total_levels:
+				# Add empty control to maintain grid structure
+				var empty_control = Control.new()
+				empty_control.custom_minimum_size = Vector2(80, 80)  # Match button size
+				grid_container.add_child(empty_control)
+				continue
+			
+			var level_button = level_button_scene.instantiate()
+			
+			# Determine if this level is unlocked
+			if level_index < Global.unlocked_levels:
+				level_button.set_level(level_index + 1, true)  # Unlocked
+			else:
+				level_button.set_level(level_index + 1, false)  # Locked
+			
+			grid_container.add_child(level_button)
 
-
-func update_button_states():
-	%LeftButton.visible = (current_page != 0)
-	%RightButton.visible = (current_page != total_pages - 1)
+func scroll_to_current_level():
+	if Global.unlocked_levels > 0:
+		var current_level = Global.unlocked_levels - 1
+		var column = int(current_level / rows)
+		
+		# Calculate the approximate scroll position
+		# This assumes uniform button widths - adjust as needed
+		var button_width = 80  # Adjust to match your button size
+		var spacing = grid_container.get_theme_constant("h_separation")
+		var target_scroll = column * (button_width + spacing)
+		
+		# Ensure we don't scroll past the end
+		var max_scroll = scroll_container.get_h_scroll_bar().max_value
+		target_scroll = min(target_scroll, max_scroll)
+		
+		scroll_container.scroll_horizontal = target_scroll
