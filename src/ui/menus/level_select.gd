@@ -1,9 +1,7 @@
 extends CanvasLayer
 
 var levels_path = "res://src/levels"
-var total_levels = 50 # Actual value is 7
 var rows = 3
-var columns_needed = int(ceil(float(total_levels) / rows))
 
 @onready var level_button_scene = preload("res://src/ui/level_button.tscn")
 @onready var scroll_container: ScrollContainer
@@ -29,6 +27,10 @@ func populate_grid():
 	for child in children:
 		%HBoxContainer.remove_child(child)
 		child.queue_free()
+		
+	var total_levels = get_total_levels()
+	print("total_levels: ", str(total_levels))
+	var columns_needed = int(ceil(float(total_levels) / rows))
 	
 	for col in range(columns_needed):
 		var vBox = VBoxContainer.new()
@@ -83,3 +85,28 @@ func scroll_to_current_level():
 				
 				# Set the scroll position
 				scroll_container.scroll_horizontal = int(scroll_position)
+
+
+func get_total_levels() -> int:
+	var dir := DirAccess.open("res://src/levels")
+	if dir == null:
+		push_error("Could not open levels directory.")
+		return 0
+	
+	var regex := RegEx.new()
+	regex.compile("^level_(\\d+)\\.tscn$")
+	
+	var max_level := 0
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+	while file_name != "":
+		if not dir.current_is_dir() and file_name.ends_with(".tscn"):
+			var result = regex.search(file_name)
+			if result:
+				var level_num = int(result.get_string(1))
+				max_level = max(max_level, level_num)
+		file_name = dir.get_next()
+	dir.list_dir_end()
+	
+	return max_level
+
