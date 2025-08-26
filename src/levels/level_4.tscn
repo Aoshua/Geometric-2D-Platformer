@@ -49,7 +49,6 @@ position = Vector2(152, 664)
 speed = Vector2(800, 1000)
 
 [node name="Enemy" parent="." instance=ExtResource("4_7kgur")]
-z_index = 1
 position = Vector2(1936, 424)
 
 [node name="Enemy2" parent="." instance=ExtResource("4_7kgur")]
@@ -71,11 +70,9 @@ position = Vector2(4760, 664)
 position = Vector2(4960, 664)
 
 [node name="Enemy6" parent="." instance=ExtResource("4_7kgur")]
-z_index = 1
 position = Vector2(7096, 664)
 
 [node name="Enemy7" parent="." instance=ExtResource("4_7kgur")]
-z_index = 1
 position = Vector2(6344, 664)
 
 [node name="Coin" parent="." instance=ExtResource("5_44low")]
@@ -187,5 +184,4 @@ position = Vector2(2400, 160)
 position = Vector2(2400, 288)
 
 [node name="Portal" parent="." instance=ExtResource("6_5ilb4")]
-z_index = -1
 position = Vector2(7352, -648)
