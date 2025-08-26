@@ -4,6 +4,8 @@ extends Actor
 @export var green_texture: Texture2D
 @export var blue_texture: Texture2D
 @export var pink_texture: Texture2D
+@export var camera_limit_left = -167
+@export var camera_limit_right = 7748
 
 const JUMP_FORCE = 1300.0
 const MOVE_SPEED = 800.0
@@ -15,8 +17,15 @@ var shield_active = false
 
 func _ready():
 	update_skin()
+	set_camera_limits()
 	update_coin_label()
 	update_shield_ui(false)
+
+
+func set_camera_limits():
+	var camera = get_node("Camera2D")
+	camera.limit_left = camera_limit_left
+	camera.limit_right = camera_limit_right
 
 
 # Called by coin on collision

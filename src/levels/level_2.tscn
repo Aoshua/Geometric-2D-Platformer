@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://b40h2s0cuixw0"]
+[gd_scene load_steps=9 format=3 uid="uid://b40h2s0cuixw0"]
 
 [ext_resource type="Texture2D" uid="uid://b7n1ifr3tdfcc" path="res://assets/background.png" id="1_rcj46"]
-[ext_resource type="Script" path="res://src/levels/level_2.gd" id="1_xykie"]
 [ext_resource type="Texture2D" uid="uid://cby6agjm5670q" path="res://assets/tileset.png" id="2_ne67v"]
 [ext_resource type="PackedScene" uid="uid://bunoo8gsksr0h" path="res://src/actors/player.tscn" id="3_ngop4"]
 [ext_resource type="PackedScene" uid="uid://cjt1eiom1a251" path="res://src/objects/coin.tscn" id="4_8nsty"]
@@ -30,7 +29,6 @@ physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_gu6un")
 
 [node name="Level2" type="Node2D"]
-script = ExtResource("1_xykie")
 metadata/_edit_vertical_guides_ = [5552.0]
 metadata/_edit_horizontal_guides_ = [504.0]
 
