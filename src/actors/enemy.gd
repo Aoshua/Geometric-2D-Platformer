@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func _on_stop_detector_body_entered(body: Node2D) -> void:
 	if body.global_position.y > $StompDetector.global_position.y:
-		return 
+		return # Player is not coming from above the stomp detector
 	
 	SoundManager.play_sound("splat", -5)
 	# Defer disabling the collision shape and freeing the node to avoid errors

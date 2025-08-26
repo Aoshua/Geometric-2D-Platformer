@@ -63,12 +63,10 @@ func get_host_scene_path() -> String:
 
 func infer_current_level() -> int:
 	var scene_path := get_host_scene_path()
-	print("scene_path: ", scene_path)
 	if scene_path == "":
 		return -1
 
 	var base := scene_path.get_file().get_basename() # e.g. "level_3"
-	print("base: ", base)
 	var re := RegEx.new()
 	if re.compile(LEVEL_NAME_PATTERN) != OK:
 		return -1
@@ -111,7 +109,6 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func teleport() -> void:
-	print("current_level: ", str(current_level))
 	if current_level <= 0 or next_scene == null:
 		push_warning("Portal couldn't resolve current level or next scene; aborting teleport.")
 		return
