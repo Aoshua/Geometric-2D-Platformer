@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ufqqrlx3ht6m"]
+[gd_scene load_steps=10 format=3 uid="uid://ufqqrlx3ht6m"]
 
 [ext_resource type="Texture2D" uid="uid://b7n1ifr3tdfcc" path="res://assets/background.png" id="1_mbgus"]
 [ext_resource type="Script" path="res://src/levels/level_1.gd" id="1_v760w"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dvuyxdodrur0k" path="res://src/actors/enemy.tscn" id="4_veivs"]
 [ext_resource type="PackedScene" uid="uid://cjt1eiom1a251" path="res://src/objects/coin.tscn" id="5_wmsko"]
 [ext_resource type="PackedScene" uid="uid://0pbs8li3x75e" path="res://src/objects/portal.tscn" id="6_dfoxo"]
-[ext_resource type="PackedScene" uid="uid://b40h2s0cuixw0" path="res://src/levels/level_2.tscn" id="7_ysgg4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gu6un"]
 texture = ExtResource("2_a7h1m")
@@ -154,5 +153,3 @@ position = Vector2(7358, 337)
 
 [node name="Portal" parent="." instance=ExtResource("6_dfoxo")]
 position = Vector2(7074, 256)
-next_scene = ExtResource("7_ysgg4")
-current_level = 1

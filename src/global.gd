@@ -93,7 +93,7 @@ func add_coins(level_coins: int):
 
 func remove_coins(coins_to_remove: int):
 	coins -= coins_to_remove
-	save_game
+	save_game()
 
 
 func add_shield():

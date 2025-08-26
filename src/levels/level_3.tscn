@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dsmpmo7qdxe2n"]
+[gd_scene load_steps=7 format=3 uid="uid://dsmpmo7qdxe2n"]
 
 [ext_resource type="Texture2D" uid="uid://b7n1ifr3tdfcc" path="res://assets/background.png" id="1_e6uhk"]
 [ext_resource type="Script" path="res://src/levels/level_3.gd" id="1_ik7wo"]
 [ext_resource type="Texture2D" uid="uid://cby6agjm5670q" path="res://assets/tileset.png" id="2_w77gr"]
 [ext_resource type="PackedScene" uid="uid://bunoo8gsksr0h" path="res://src/actors/player.tscn" id="3_gk5e8"]
-[ext_resource type="PackedScene" uid="uid://0pbs8li3x75e" path="res://src/objects/portal.tscn" id="5_i7665"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gu6un"]
 texture = ExtResource("2_w77gr")
@@ -47,5 +46,3 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608,
 [node name="Player" parent="." instance=ExtResource("3_gk5e8")]
 position = Vector2(152, 104)
 speed = Vector2(800, 1000)
-
-[node name="Portal" parent="." instance=ExtResource("5_i7665")]
