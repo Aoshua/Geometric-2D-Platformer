@@ -32,11 +32,14 @@ pink_texture = ExtResource("2_rqcuv")
 metadata/_edit_vertical_guides_ = [1152.0]
 metadata/_edit_horizontal_guides_ = [611.0]
 
-[node name="PlayerSkin" type="Sprite2D" parent="."]
+[node name="Jelly" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="PlayerSkin" type="Sprite2D" parent="Jelly"]
 unique_name_in_owner = true
 position = Vector2(0, -48)
 
-[node name="Shield" parent="PlayerSkin" instance=ExtResource("3_p81qi")]
+[node name="Shield" parent="Jelly/PlayerSkin" instance=ExtResource("3_p81qi")]
 unique_name_in_owner = true
 visible = false
 

@@ -15,6 +15,33 @@ var is_dead = false
 var current_coins = 0
 var shield_active = false
 
+@export_group("Jelly Deform")
+@export var jelly_enabled: bool = true
+@export var max_stretch: float = 0.20         # 20% at top speed
+@export var speed_for_max: float = MOVE_SPEED
+@export var shear_at_max: float = 0.15        # tiny tilt forward
+@export var spring: float = 40.0
+@export var damping: float = 12.0
+@export var min_scale: float = 0.7
+@export var max_scale: float = 1.3
+
+@onready var jelly_node: Node2D = %Jelly
+
+# Jelly state (start at 1:1, no shear)
+var _sx := 1.0
+var _sy := 1.0
+var _vsx := 0.0
+var _vsy := 0.0
+var _shear := 0.0     # Node2D.skew is in radians; we'll feed a small value
+var _vshear := 0.0
+
+# For landing squash
+var _was_on_floor := false
+var _prev_velocity := Vector2.ZERO
+
+# TODO: This sucks when false, so just get rid of it
+var use_smooth_graphics: bool = true
+
 func _ready():
 	update_skin()
 	set_camera_limits()
@@ -41,6 +68,14 @@ func bank_coins():
 
 
 func update_skin():
+	# Filtering mode depends on toggle
+	if use_smooth_graphics:
+		%PlayerSkin.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	else:
+		%PlayerSkin.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+
+	%PlayerSkin.texture_repeat = CanvasItem.TEXTURE_REPEAT_DISABLED
+	
 	print("loading player skin" + str(Global.current_skin))
 	match Global.current_skin:
 		Global.PlayerSkins.GREEN:
@@ -187,6 +222,11 @@ func _physics_process(delta: float) -> void:
 
 	# Apply movement
 	move_and_slide()
+	
+	# Update jello deformation
+	_update_jelly(delta)
+	_prev_velocity = velocity
+	_was_on_floor = is_on_floor()
 
 
 func get_direction() -> Vector2:
@@ -222,3 +262,78 @@ func _on_shield_button_pressed():
 	Global.use_shield()
 	shield_active = true
 	update_shield_ui(true)
+
+
+func _spring(x: float, v: float, goal: float, k: float, c: float, dt: float) -> Dictionary:
+	v += (k * (goal - x) - c * v) * dt
+	x += v * dt
+	return {"x": x, "v": v}
+
+
+func _update_jelly(delta: float) -> void:
+	if not jelly_enabled or jelly_node == null:
+		return
+
+	var v: Vector2 = velocity
+	var speed := v.length()
+	var horiz_dominates = abs(v.x) >= abs(v.y)
+
+	# Map speed to [0..1] for deformation amount
+	var t = clamp(speed / max(1.0, speed_for_max), 0.0, 1.0)
+	var target_stretch = 1.0 + t * max_stretch
+	var target_squash = 1.0 / target_stretch
+	var target_shear = t * shear_at_max
+	
+	if not use_smooth_graphics:
+		target_shear = 0.0
+
+	var desired_sx := 1.0
+	var desired_sy := 1.0
+	var desired_shear := 0.0
+
+	if horiz_dominates:
+		desired_sx = target_stretch
+		desired_sy = target_squash
+		desired_shear = sign(v.x) * target_shear
+	else:
+		# (keep if you want vertical jelly during jumps/falls)
+		desired_sx = target_squash
+		desired_sy = target_stretch
+		desired_shear = sign(v.y) * target_shear
+
+	# --- Landing squash juice ---
+	if is_on_floor() and not _was_on_floor and _prev_velocity.y > 0.0:
+		var impact := _prev_velocity.y
+		var bump = clamp(impact * 0.0005, 0.0, 0.25)  # tune 0.0005..0.001
+		_sx = max(_sx - bump, min_scale)
+		_sy = min(_sy + bump, max_scale)
+		_shear = 0.0
+		_vsx = 0.0
+		_vsy = 0.0
+		_vshear = 0.0
+
+	# --- Spring toward desired state ---
+	var r := _spring(_sx, _vsx, desired_sx, spring, damping, delta)
+	_sx = r.x
+	_vsx = r.v
+
+	r = _spring(_sy, _vsy, desired_sy, spring, damping, delta)
+	_sy = r.x
+	_vsy = r.v
+
+	r = _spring(_shear, _vshear, desired_shear, spring, damping, delta)
+	_shear = r.x
+	_vshear = r.v
+
+	# Safety clamps
+	_sx = clamp(_sx, min_scale, max_scale)
+	_sy = clamp(_sy, min_scale, max_scale)
+
+	# Apply to visuals only (physics shapes remain unchanged)
+	jelly_node.scale = Vector2(_sx, _sy)
+
+	if use_smooth_graphics:
+		jelly_node.skew = _shear    # allow shear for gooey lean
+	else:
+		jelly_node.skew = 0.0       # disable shear for pixel crisp
+		jelly_node.position = jelly_node.position.round()
