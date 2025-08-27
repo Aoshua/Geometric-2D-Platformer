@@ -17,12 +17,12 @@ var shield_active = false
 
 @export_group("Jelly Deform")
 @export var jelly_enabled: bool = true
-@export var max_stretch: float = 0.20         # 20% at top speed
+@export var max_stretch: float = 0.15         # 15% at top speed
 @export var speed_for_max: float = MOVE_SPEED
-@export var shear_at_max: float = 0.15        # tiny tilt forward
+@export var shear_at_max: float = 0.10        # tiny tilt forward
 @export var spring: float = 40.0
 @export var damping: float = 12.0
-@export var min_scale: float = 0.7
+@export var min_scale: float = 0.9
 @export var max_scale: float = 1.3
 
 @onready var jelly_node: Node2D = %Jelly
