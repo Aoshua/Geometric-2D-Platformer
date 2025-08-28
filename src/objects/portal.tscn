@@ -71,7 +71,8 @@ _data = {
 z_index = -1
 script = ExtResource("1_obdys")
 
-[node name="Portal" type="Sprite2D" parent="."]
+[node name="PortalSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(0, -101)
 texture = ExtResource("2_dd06n")
 

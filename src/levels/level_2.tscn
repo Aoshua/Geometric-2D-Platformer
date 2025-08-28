@@ -107,4 +107,7 @@ position = Vector2(4092, 663)
 position = Vector2(6912, 664)
 
 [node name="Portal" parent="." instance=ExtResource("7_c2asa")]
-position = Vector2(7352, 632)
+z_index = 1
+z_as_relative = false
+position = Vector2(7352, 648)
+rotation = 0.00810761

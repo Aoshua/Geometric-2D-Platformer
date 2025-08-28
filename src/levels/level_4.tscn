@@ -184,4 +184,7 @@ position = Vector2(2400, 160)
 position = Vector2(2400, 288)
 
 [node name="Portal" parent="." instance=ExtResource("6_5ilb4")]
-position = Vector2(7352, -648)
+z_index = 1
+z_as_relative = false
+position = Vector2(7352, -632)
+rotation = -0.00783123

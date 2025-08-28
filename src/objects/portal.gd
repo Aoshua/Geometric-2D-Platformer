@@ -3,15 +3,71 @@ extends Area2D
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 
-const LEVELS_DIR := "res://src/levels"         # <- your folder
-const LEVEL_NAME_PATTERN := r"level_(\d+)$"     # <- your naming
-
+const LEVELS_DIR := "res://src/levels"
+const LEVEL_NAME_PATTERN := r"level_(\d+)$"
 var current_level: int = -1
 var next_scene: PackedScene = null
 
+# Animation vars
+var pulse_speed = 1.2          # how fast it "breathes"
+var pulse_amount = 0.04        # ± scale amount (0.06 = ±6%)
+var rotation_speed = 0.7       # speed of the subtle rotation
+var rotation_deg = 0.5		   # max rotation swing, in degrees
+var glow_scale = 1.16          # base size of the glow layer
+var glow_pulse_amount = 0.04   # how much the glow grows/shrinks
+var glow_alpha = 0.45          # base glow strength
+var glow_alpha_variation = 0.25# how much the glow fades in/out
+var _t = 0.0
+var _base_scale = Vector2.ONE
+var _glow: Sprite2D
 
 func _ready() -> void:
+	z_index = 1            # in front of tiles, behind player
+	z_as_relative = false  # use absolute z (ignore parent’s z)
 	recompute_links()
+	init_glow_animation()
+
+
+func init_glow_animation():
+	_base_scale = %PortalSprite.scale
+	
+	_glow = Sprite2D.new()
+	_glow.texture = %PortalSprite.texture
+	_glow.centered = %PortalSprite.centered
+	_glow.offset = %PortalSprite.offset
+	_glow.flip_h = %PortalSprite.flip_h
+	_glow.flip_v = %PortalSprite.flip_v
+	_glow.modulate = Color(1, 1, 1, glow_alpha)
+	
+	%PortalSprite.add_child(_glow)
+	_glow.z_index = %PortalSprite.z_index - 1
+	_glow.show_behind_parent = true
+	_glow.position = Vector2.ZERO
+	_glow.scale = Vector2.ONE
+	
+	var mat = CanvasItemMaterial.new()
+	mat.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
+	_glow.material = mat
+
+
+func _process(delta: float) -> void:
+	_t += delta
+
+	# Pulse
+	var s = 1.0 + pulse_amount * sin(_t * TAU * pulse_speed)
+	%PortalSprite.scale = _base_scale * s
+
+	# Subtle rotation
+	rotation = deg_to_rad(rotation_deg) * sin(_t * TAU * rotation_speed)
+
+	# Glow motion
+	var gs = glow_scale + glow_pulse_amount * sin(_t * TAU * pulse_speed + PI/6.0)
+	_glow.scale = _base_scale * gs
+
+	var a = clamp(glow_alpha + glow_alpha_variation * sin(_t * TAU * pulse_speed - PI/4.0), 0.0, 1.0)
+	_glow.modulate.a = a
+
+	_glow.rotation = rotation * 0.7
 
 
 func _notification(what: int) -> void:
