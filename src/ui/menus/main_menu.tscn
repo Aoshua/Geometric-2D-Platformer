@@ -95,7 +95,8 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Shop"
 
-[node name="Control3" type="Control" parent="."]
+[node name="ResetButtonControl" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
@@ -104,7 +105,7 @@ offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
 
-[node name="Button" type="Button" parent="Control3"]
+[node name="Button" type="Button" parent="ResetButtonControl"]
 layout_direction = 3
 layout_mode = 0
 offset_left = 16.0
@@ -119,4 +120,4 @@ text = "Reset"
 [connection signal="pressed" from="Control2/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="Control2/VBoxContainer/SelectLevelButton" to="." method="_on_select_level_button_pressed"]
 [connection signal="pressed" from="Control2/VBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
-[connection signal="pressed" from="Control3/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ResetButtonControl/Button" to="." method="_on_button_pressed"]
