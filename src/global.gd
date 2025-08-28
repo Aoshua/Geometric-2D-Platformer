@@ -52,7 +52,7 @@ func load_game():
 		return
 	
 	# Set saved values, setting a default if no value found
-	unlocked_levels = json.data.get("unlocked_levels", 1)
+	unlocked_levels = 7 #json.data.get("unlocked_levels", 1)
 	coins = json.data.get("coins", 0)
 	shields = json.data.get("shields", 0)
 	current_skin = PlayerSkins[json.data.get("current_skin", "GREEN")]

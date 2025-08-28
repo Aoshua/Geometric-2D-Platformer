@@ -46,6 +46,7 @@ shape = SubResource("RectangleShape2D_k14d6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -200)
+zoom = Vector2(0.75, 0.75)
 
 [node name="EnemyDetector" type="Area2D" parent="."]
 collision_layer = 0
