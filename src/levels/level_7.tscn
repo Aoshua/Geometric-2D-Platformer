@@ -52,7 +52,7 @@ speed = Vector2(800, 1000)
 z_index = 1
 z_as_relative = false
 position = Vector2(7432, 1528)
-rotation = 0.00188214
+rotation = 0.000925046
 
 [node name="Coin" parent="." instance=ExtResource("5_jiqy6")]
 position = Vector2(600, -200)

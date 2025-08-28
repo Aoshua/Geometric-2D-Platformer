@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmaxfpebxhud3"
-path="res://.godot/imported/arrow-up-regular.svg-f89ac70fdae607cdc2c8bfaf9de09bef.ctex"
+uid="uid://3sswoc8cunau"
+path="res://.godot/imported/Screenshot 2025-08-28 135532.png-9028b271ed17eb22ddeb35768d8e2c0a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/lunacy/arrow-up-regular.svg"
-dest_files=["res://.godot/imported/arrow-up-regular.svg-f89ac70fdae607cdc2c8bfaf9de09bef.ctex"]
+source_file="res://publishing/screenshots/Screenshot 2025-08-28 135532.png"
+dest_files=["res://.godot/imported/Screenshot 2025-08-28 135532.png-9028b271ed17eb22ddeb35768d8e2c0a.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

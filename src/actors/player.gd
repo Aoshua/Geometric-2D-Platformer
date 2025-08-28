@@ -20,6 +20,7 @@ func _ready():
 	set_camera_limits()
 	update_coin_label()
 	update_shield_ui(false)
+	# toggle_control_visibility(false) # Useful when taking screenshots
 
 
 func set_camera_limits():
