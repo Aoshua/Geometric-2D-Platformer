@@ -41,13 +41,11 @@ func bank_coins():
 
 
 func update_skin():
-	print("loading player skin" + str(Global.current_skin))
+	# print("loading player skin" + str(Global.current_skin))
 	match Global.current_skin:
 		Global.PlayerSkins.GREEN:
-			print("matches green")
 			%PlayerSkin.texture = green_texture
 		Global.PlayerSkins.BLUE:
-			print("matches blue")
 			%PlayerSkin.texture = blue_texture
 		Global.PlayerSkins.PINK:
 			print("matches pink")

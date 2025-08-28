@@ -105,13 +105,23 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("bank_coins"):
 		body.bank_coins()
 	SoundManager.play_sound("teleport")
-	teleport()
+	
+	if current_level <= 0 or next_scene == null:
+		end_game(body)
+	else:
+		teleport()
+
+
+func end_game(body: Node2D):
+	if body.has_method("toggle_control_visibility"):
+		body.toggle_control_visibility(false)
+	
+	var menu = load("res://src/ui/menus/game_complete_menu.tscn").instantiate()
+	menu.process_mode = Node.PROCESS_MODE_ALWAYS
+	get_tree().root.add_child(menu)
 
 
 func teleport() -> void:
-	if current_level <= 0 or next_scene == null:
-		push_warning("Portal couldn't resolve current level or next scene; aborting teleport.")
-		return
 	anim_player.play("fade_in")
 	await anim_player.animation_finished
 	Global.unlock_level(current_level)
