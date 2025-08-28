@@ -1,7 +1,10 @@
+# NOTE:
+# If I ever decide to add many more levels: change rows to 3
+
 extends CanvasLayer
 
 var levels_path = "res://src/levels"
-var rows = 3
+var rows = 1
 
 @onready var level_button_scene = preload("res://src/ui/level_button.tscn")
 @onready var scroll_container: ScrollContainer
@@ -19,6 +22,14 @@ func setup_scroll_container():
 	scroll_container.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
 	scroll_container.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	scroll_container.follow_focus = true
+	
+	# Disable scrolling when just 1 row
+	if (rows == 1):
+		# Center the row of columns and let the row fill the width
+		%MarginContainer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		%HBoxContainer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		%HBoxContainer.alignment = BoxContainer.ALIGNMENT_CENTER
+		scroll_container.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 
 
 func populate_grid():
@@ -58,6 +69,9 @@ func populate_grid():
 
 
 func scroll_to_current_level():
+	if scroll_container.horizontal_scroll_mode == ScrollContainer.SCROLL_MODE_DISABLED:
+		return
+		
 	if Global.unlocked_levels > 0:
 			var current_level = Global.unlocked_levels
 			var column = int(current_level / rows)
