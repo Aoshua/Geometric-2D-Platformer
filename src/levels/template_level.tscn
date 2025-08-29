@@ -44,3 +44,10 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608,
 [node name="Player" parent="." instance=ExtResource("3_8drc4")]
 position = Vector2(152, 664)
 speed = Vector2(800, 1000)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 307.0
+offset_top = -122.0
+offset_right = 347.0
+offset_bottom = -99.0
+text = "REMEMBER TO INCREMENT TOTAL_LEVELS IN global.gd"

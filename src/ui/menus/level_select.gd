@@ -1,5 +1,5 @@
 # NOTE:
-# If I ever decide to add many more levels: change rows to 3
+# If I ever decide to add many more levels: change rows to 3, uncomment scroll_to_current_level call
 
 extends CanvasLayer
 
@@ -13,7 +13,7 @@ func _ready():
 	setup_scroll_container()
 	populate_grid()
 	# Scroll to show the current unlocked level after a frame
-	call_deferred("scroll_to_current_level")
+	# call_deferred("scroll_to_current_level")
 
 func setup_scroll_container():
 	scroll_container = %ScrollContainer
@@ -39,8 +39,7 @@ func populate_grid():
 		%HBoxContainer.remove_child(child)
 		child.queue_free()
 		
-	var total_levels = get_total_levels()
-	print("total_levels: ", str(total_levels))
+	var total_levels = Global.TOTAL_LEVELS
 	var columns_needed = int(ceil(float(total_levels) / rows))
 	
 	for col in range(columns_needed):
@@ -69,9 +68,6 @@ func populate_grid():
 
 
 func scroll_to_current_level():
-	if scroll_container.horizontal_scroll_mode == ScrollContainer.SCROLL_MODE_DISABLED:
-		return
-		
 	if Global.unlocked_levels > 0:
 			var current_level = Global.unlocked_levels
 			var column = int(current_level / rows)
@@ -99,31 +95,6 @@ func scroll_to_current_level():
 				
 				# Set the scroll position
 				scroll_container.scroll_horizontal = int(scroll_position)
-
-
-func get_total_levels() -> int:
-	var dir := DirAccess.open("res://src/levels")
-	if dir == null:
-		push_error("Could not open levels directory.")
-		return 0
-	
-	var regex := RegEx.new()
-	regex.compile("^level_(\\d+)\\.tscn$")
-	
-	var max_level := 0
-	dir.list_dir_begin()
-	var file_name = dir.get_next()
-	while file_name != "":
-		if not dir.current_is_dir() and file_name.ends_with(".tscn"):
-			var result = regex.search(file_name)
-			if result:
-				var level_num = int(result.get_string(1))
-				max_level = max(max_level, level_num)
-		file_name = dir.get_next()
-	dir.list_dir_end()
-	
-	return max_level
-
 
 
 func _on_touch_screen_button_pressed():

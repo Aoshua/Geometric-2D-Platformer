@@ -2,6 +2,8 @@ extends Node
 
 enum PlayerSkins { GREEN, BLUE, PINK }
 
+const TOTAL_LEVELS = 7
+
 var unlocked_levels = 1
 var coins = 0
 var shields = 0
