@@ -29,7 +29,7 @@ stomp_impulse = 600.0
 green_texture = ExtResource("1_gc24r")
 blue_texture = ExtResource("2_j8s5a")
 pink_texture = ExtResource("2_rqcuv")
-metadata/_edit_vertical_guides_ = [1152.0]
+metadata/_edit_vertical_guides_ = [768.0]
 metadata/_edit_horizontal_guides_ = [611.0]
 
 [node name="PlayerSkin" type="Sprite2D" parent="."]
