@@ -1,19 +1,27 @@
 extends Node
 
+signal coins_changed
+
 enum PlayerSkins { GREEN, BLUE, PINK }
 
 const TOTAL_LEVELS = 7
+# Path to the save file. For mobile and desktop, this saves to a user-specific directory.
+const SAVE_PATH = "user://save_game.json"
+# Used to set the window size and appropriately scale screenshots for iOS
+const RES_IOS = Vector2i(2796, 1290)
 
+# Save Data:
 var unlocked_levels = 1
 var coins = 0
 var shields = 0
 var current_skin = PlayerSkins.GREEN
 var unlocked_skins = [PlayerSkins.GREEN]
 
-signal coins_changed
 
-# Path to the save file. For mobile and desktop, this saves to a user-specific directory.
-const SAVE_PATH = "user://save_game.json"
+func _ready():
+	get_window().size = RES_IOS
+	get_window().move_to_center()
+
 
 func save_game():
 	var save_data = {
@@ -120,3 +128,21 @@ func unlock_skin(skin: PlayerSkins):
 func equip_skin(skin: PlayerSkins):
 	current_skin = skin
 	save_game()
+
+
+func _input(event):
+	if event.is_pressed() and event is InputEventKey:
+		if event.physical_keycode == KEY_P: # The 'P' key
+			var img = get_viewport().get_texture().get_image()
+			
+			var current_size = img.get_size()
+			# Scale to target size
+			if current_size != RES_IOS:
+				img.resize(RES_IOS.x, RES_IOS.y)
+			
+			var file_path = "res://publishing/screenshots/screenshot_%d.png" % Time.get_ticks_msec()
+			var err = img.save_png(file_path)
+			if err == OK:
+				print("Screenshot saved to: ", file_path)
+			else:
+				print("Failed to save screenshot")
