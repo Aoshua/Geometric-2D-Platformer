@@ -17,10 +17,12 @@ var shields = 0
 var current_skin = PlayerSkins.GREEN
 var unlocked_skins = [PlayerSkins.GREEN]
 
-
-func _ready():
-	get_window().size = RES_IOS
-	get_window().move_to_center()
+# Only needed when taking screenshots
+# Also be sure to enable Project Settings > Display > Window :
+# Stretch, Mode=viewport Aspect=expand
+#func _ready():
+	#get_window().size = RES_IOS
+	#get_window().move_to_center()
 
 
 func save_game():
