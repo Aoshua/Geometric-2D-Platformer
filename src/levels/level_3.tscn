@@ -64,10 +64,8 @@ position = Vector2(2656, 664)
 position = Vector2(1224, 664)
 
 [node name="Portal" parent="." instance=ExtResource("5_i7665")]
-z_index = 1
-z_as_relative = false
 position = Vector2(7400, -552)
-rotation = -0.00170357
+rotation = -0.00399641
 
 [node name="Coin" parent="." instance=ExtResource("7_tkb0j")]
 position = Vector2(504, 264)

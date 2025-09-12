@@ -9,7 +9,8 @@ const TOTAL_LEVELS = 7
 const SAVE_PATH = "user://save_game.json"
 # Used to set the window size and appropriately scale screenshots for iOS
 #const RES_IOS_6_9 = Vector2i(2796, 1290)
-const RES_IOS_6_5 = Vector2i(2688, 1242)
+#const RES_IOS_6_5 = Vector2i(2688, 1242)
+const RES_IPAD_13 = Vector2i(2752, 2064)
 
 # Save Data:
 var unlocked_levels = 1
@@ -22,7 +23,7 @@ var unlocked_skins = [PlayerSkins.GREEN]
 # Also be sure to enable Project Settings > Display > Window :
 # Stretch, Mode=viewport Aspect=expand
 #func _ready():
-	#get_window().size = RES_IOS_6_5
+	#get_window().size = RES_IPAD_13
 	#get_window().move_to_center()
 
 
@@ -140,8 +141,8 @@ func _input(event):
 			
 			var current_size = img.get_size()
 			# Scale to target size
-			if current_size != RES_IOS_6_5:
-				img.resize(RES_IOS_6_5.x, RES_IOS_6_5.y)
+			if current_size != RES_IPAD_13:
+				img.resize(RES_IPAD_13.x, RES_IPAD_13.y)
 			
 			var file_path = "res://publishing/screenshots/screenshot_%d.png" % Time.get_ticks_msec()
 			var err = img.save_png(file_path)
