@@ -50,7 +50,7 @@ speed = Vector2(800, 1000)
 
 [node name="Portal" parent="." instance=ExtResource("4_kuw7m")]
 position = Vector2(6872, -1352)
-rotation = -0.00759322
+rotation = -0.00255417
 
 [node name="Coin" parent="." instance=ExtResource("5_lh1h6")]
 position = Vector2(1078, 266)

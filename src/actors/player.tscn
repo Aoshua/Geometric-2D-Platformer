@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://bunoo8gsksr0h"]
 
 [ext_resource type="Script" path="res://src/actors/player.gd" id="1_34e7d"]
-[ext_resource type="Texture2D" uid="uid://ba6lkcbsi6bg2" path="res://assets/player.png" id="1_gc24r"]
-[ext_resource type="Texture2D" uid="uid://bqf77pbvdlhg4" path="res://assets/player-blue.png" id="2_j8s5a"]
-[ext_resource type="Texture2D" uid="uid://c210e4md2odrr" path="res://assets/player-pink.png" id="2_rqcuv"]
+[ext_resource type="Texture2D" uid="uid://dmn0jb6emjl44" path="res://assets/player.png" id="1_gc24r"]
+[ext_resource type="Texture2D" uid="uid://8k3ayma12m05" path="res://assets/player-blue.png" id="2_j8s5a"]
+[ext_resource type="Texture2D" uid="uid://285k7ovtusdf" path="res://assets/player-pink.png" id="2_rqcuv"]
 [ext_resource type="PackedScene" uid="uid://br2wdw0ip7pdg" path="res://src/ui/joystick.tscn" id="3_ca37w"]
 [ext_resource type="PackedScene" uid="uid://d1bkh1hpd2lvv" path="res://src/objects/shield.tscn" id="3_p81qi"]
 [ext_resource type="PackedScene" uid="uid://bln2swwe26jf2" path="res://src/ui/jump_button.tscn" id="4_jkb2p"]
@@ -34,7 +34,7 @@ metadata/_edit_horizontal_guides_ = [611.0]
 
 [node name="PlayerSkin" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -48)
+position = Vector2(0, -45)
 
 [node name="Shield" parent="PlayerSkin" instance=ExtResource("3_p81qi")]
 unique_name_in_owner = true
