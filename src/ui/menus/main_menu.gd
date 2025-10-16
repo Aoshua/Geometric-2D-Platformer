@@ -2,6 +2,7 @@ extends CanvasLayer
 
 func _ready():
 	Global.load_game()
+	var anim_player = $ContentContainer/AnimationSpace/PlayerSprite/AnimationPlayer
 
 
 func _on_continue_button_pressed():
