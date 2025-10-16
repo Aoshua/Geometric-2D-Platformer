@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://dvuyxdodrur0k"]
 
 [ext_resource type="Script" path="res://src/actors/enemy.gd" id="1_v2r0g"]
-[ext_resource type="Texture2D" uid="uid://c08ssgvlosjkw" path="res://assets/enemy.png" id="2_xlihw"]
+[ext_resource type="Texture2D" uid="uid://cgw3ghi37qfu7" path="res://assets/enemy.png" id="2_xlihw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wjhwq"]
 size = Vector2(108, 77)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fw7d3"]
-size = Vector2(33.571, 7.00564)
+size = Vector2(33.571, 9.68425)
 
 [node name="Enemy" type="CharacterBody2D"]
 z_index = 1
@@ -17,24 +17,25 @@ script = ExtResource("1_v2r0g")
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -47)
+position = Vector2(0, -50)
 texture = ExtResource("2_xlihw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -38.5)
+position = Vector2(0, -30.5)
 shape = SubResource("RectangleShape2D_wjhwq")
 
 [node name="ScreenEnabler" type="VisibleOnScreenEnabler2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -10)
-scale = Vector2(5.4, 1)
+position = Vector2(0, -2.8)
+scale = Vector2(5.4, 1.4)
+rect = Rect2(-10, -18, 20, 20)
 
 [node name="StompDetector" type="Area2D" parent="."]
 unique_name_in_owner = true
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StompDetector"]
-position = Vector2(-1.66893e-06, -86.5)
+position = Vector2(0, -81.25)
 scale = Vector2(2.74046, 2.42662)
 shape = SubResource("RectangleShape2D_fw7d3")
 debug_color = Color(8.66354e-07, 0.622202, 0.548045, 0.42)

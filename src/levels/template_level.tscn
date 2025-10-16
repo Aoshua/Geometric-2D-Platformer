@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcy8bscol0udk"]
+[gd_scene load_steps=7 format=3 uid="uid://bcy8bscol0udk"]
 
-[ext_resource type="Texture2D" uid="uid://b7n1ifr3tdfcc" path="res://assets/background.png" id="1_rdxnd"]
+[ext_resource type="Texture2D" uid="uid://clnvc6dbl5le8" path="res://assets/background.png" id="1_rdxnd"]
 [ext_resource type="Texture2D" uid="uid://cby6agjm5670q" path="res://assets/tileset.png" id="2_s63ji"]
 [ext_resource type="PackedScene" uid="uid://bunoo8gsksr0h" path="res://src/actors/player.tscn" id="3_8drc4"]
+[ext_resource type="PackedScene" uid="uid://dvuyxdodrur0k" path="res://src/actors/enemy.tscn" id="4_btoit"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gu6un"]
 texture = ExtResource("2_s63ji")
@@ -51,3 +52,6 @@ offset_top = -122.0
 offset_right = 347.0
 offset_bottom = -99.0
 text = "REMEMBER TO INCREMENT TOTAL_LEVELS IN global.gd"
+
+[node name="Enemy" parent="." instance=ExtResource("4_btoit")]
+position = Vector2(696, 664)
