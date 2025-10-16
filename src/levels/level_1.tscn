@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://ufqqrlx3ht6m"]
 
-[ext_resource type="Texture2D" uid="uid://b7n1ifr3tdfcc" path="res://assets/background.png" id="1_mbgus"]
+[ext_resource type="Texture2D" uid="uid://clnvc6dbl5le8" path="res://assets/background.png" id="1_mbgus"]
 [ext_resource type="Texture2D" uid="uid://cby6agjm5670q" path="res://assets/tileset.png" id="2_a7h1m"]
 [ext_resource type="PackedScene" uid="uid://bunoo8gsksr0h" path="res://src/actors/player.tscn" id="3_h2ha5"]
 [ext_resource type="PackedScene" uid="uid://dvuyxdodrur0k" path="res://src/actors/enemy.tscn" id="4_veivs"]
@@ -150,7 +150,5 @@ position = Vector2(7459, 335)
 position = Vector2(7358, 337)
 
 [node name="Portal" parent="." instance=ExtResource("6_dfoxo")]
-z_index = 1
-z_as_relative = false
 position = Vector2(7080, 248)
-rotation = -0.000256808
+rotation = 0.000216898

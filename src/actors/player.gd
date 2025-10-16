@@ -54,7 +54,7 @@ func update_skin():
 
 
 func update_coin_label():
-	%CoinsLabel.text = "Coins: " + str(current_coins).pad_zeros(4)
+	%CoinsLabel.text = "Gems: " + str(current_coins).pad_zeros(4)
 
 
 func update_shield_ui(showShield: bool):
