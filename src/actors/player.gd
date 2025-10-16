@@ -8,9 +8,10 @@ extends Actor
 @export var camera_limit_right = 7748
 
 # Rotation animation settings
-@export var ground_rotation_speed = 1.0  # Rotation speed multiplier on ground
-@export var air_rotation_speed = 1.5      # Faster rotation in air (no friction)
+@export var ground_rotation_speed = 0.75  # Rotation speed multiplier on ground
+@export var air_rotation_speed = 1        # Faster rotation in air (no friction)
 @export var velocity_spin_factor = 0.001  # How much velocity affects spin
+@export var pentagon_radius = 45.0        # Distance from center to corner (adjust to match your sprite size)
 
 const JUMP_FORCE = 1300.0
 const MOVE_SPEED = 800.0
@@ -173,6 +174,28 @@ func toggle_control_visibility(show: bool):
 	%PauseButton.visible = show
 
 
+func calculate_vertical_offset(rotation_degrees: float) -> float:
+	# Calculate how much to raise the sprite so the lowest point stays at ground level
+	# Pentagon rotates through 72° cycles (5 sides)
+	# The lowest point varies as it tips from flat side to corner
+	
+	# Normalize rotation to 0-72° range for one side
+	var normalized_rotation = fmod(abs(rotation_degrees), PENTAGON_ANGLE)
+	
+	# At 0° (flat side): lowest point is at apothem distance (radius * cos(36°))
+	# At 36° (corner down): lowest point is at full radius
+	# We need to offset the difference
+	
+	var apothem = pentagon_radius * cos(deg_to_rad(36.0))  # Distance to flat side
+	var angle_from_flat = abs(normalized_rotation - PENTAGON_ANGLE / 2.0)  # Distance from 36° (corner position)
+	
+	# Calculate current lowest point
+	var current_lowest = pentagon_radius * cos(deg_to_rad(angle_from_flat))
+	
+	# Offset is the difference between apothem (resting position) and current lowest point
+	return apothem - current_lowest
+
+
 func update_rotation_animation(delta: float, horizontal_input: float):
 	# Determine rotation speed based on whether player is on ground or in air
 	var rotation_speed = ground_rotation_speed if is_on_floor() else air_rotation_speed
@@ -205,6 +228,14 @@ func update_rotation_animation(delta: float, horizontal_input: float):
 	
 	# Apply rotation to sprite
 	%PlayerSkin.rotation = deg_to_rad(current_rotation)
+	
+	# Apply vertical offset to keep lowest point at consistent height (only on ground)
+	if is_on_floor():
+		var offset = calculate_vertical_offset(current_rotation)
+		%PlayerSkin.position.y = (-1 * pentagon_radius) + offset
+	else:
+		# In air, no offset needed
+		%PlayerSkin.position.y = 0
 
 
 func _physics_process(delta: float) -> void:
