@@ -7,19 +7,31 @@ extends Actor
 @export var camera_limit_left = -167
 @export var camera_limit_right = 7748
 
+# Rotation animation settings
+@export var ground_rotation_speed = 1.0  # Rotation speed multiplier on ground
+@export var air_rotation_speed = 1.5      # Faster rotation in air (no friction)
+@export var velocity_spin_factor = 0.001  # How much velocity affects spin
+
 const JUMP_FORCE = 1300.0
 const MOVE_SPEED = 800.0
 const GRAVITY = 3000.0
+const PENTAGON_ANGLE = 72.0  # 360 / 5 sides
 
 var is_dead = false
 var current_coins = 0
 var shield_active = false
+var current_rotation = 0.0
+var target_rotation = 0.0
+var last_horizontal_input = 0.0
 
 func _ready():
 	update_skin()
 	set_camera_limits()
 	update_coin_label()
 	update_shield_ui(false)
+	# Initialize rotation to resting position (flat side down)
+	%PlayerSkin.rotation = 0.0
+	current_rotation = 0.0
 	# toggle_control_visibility(false) # Useful when taking screenshots
 
 
@@ -135,6 +147,9 @@ func revive() -> void:
 	process_mode = Node.PROCESS_MODE_INHERIT
 	visible = true
 	toggle_control_visibility(true)
+	# Reset rotation to resting position
+	%PlayerSkin.rotation = 0.0
+	current_rotation = 0.0
 	# Reset other state (position, velocity, etc.)?
 
 
@@ -156,6 +171,40 @@ func toggle_control_visibility(show: bool):
 	%Joystick.visible = show
 	%JumpButton.visible = show
 	%PauseButton.visible = show
+
+
+func update_rotation_animation(delta: float, horizontal_input: float):
+	# Determine rotation speed based on whether player is on ground or in air
+	var rotation_speed = ground_rotation_speed if is_on_floor() else air_rotation_speed
+	
+	# Add velocity-based spin for more dynamic movement
+	var velocity_spin = velocity.x * velocity_spin_factor
+	
+	if abs(horizontal_input) > 0.1:  # Player is moving
+		# Rotate continuously in the direction of movement
+		# Right = clockwise (positive), Left = counter-clockwise (negative)
+		var rotation_direction = sign(horizontal_input)
+		current_rotation += rotation_direction * rotation_speed * abs(horizontal_input) * delta * 360.0
+		current_rotation += velocity_spin * delta * 360.0
+		
+		last_horizontal_input = horizontal_input
+	else:
+		# When stopped, gradually settle to nearest resting position (multiple of 72°)
+		if is_on_floor():
+			var nearest_rest = round(current_rotation / PENTAGON_ANGLE) * PENTAGON_ANGLE
+			var rotation_diff = nearest_rest - current_rotation
+			
+			# Smoothly rotate to rest position
+			if abs(rotation_diff) > 0.5:
+				current_rotation += sign(rotation_diff) * min(abs(rotation_diff), rotation_speed * delta * 180.0)
+			else:
+				current_rotation = nearest_rest
+		else:
+			# In air with no input, maintain rotation with slight velocity-based spin
+			current_rotation += velocity_spin * delta * 360.0
+	
+	# Apply rotation to sprite
+	%PlayerSkin.rotation = deg_to_rad(current_rotation)
 
 
 func _physics_process(delta: float) -> void:
@@ -183,6 +232,9 @@ func _physics_process(delta: float) -> void:
 	# Apply gravity while in the air
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
+
+	# Update rotation animation
+	update_rotation_animation(delta, horizontal_input)
 
 	# Apply movement
 	move_and_slide()
