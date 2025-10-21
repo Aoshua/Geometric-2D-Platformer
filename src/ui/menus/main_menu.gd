@@ -39,7 +39,6 @@ func create_jump_animation():
 	animation.track_insert_key(pos_track_index, 2.8, Vector2(x_pos, start_y))
 	
 	# Pause before looping
-	#animation.track_insert_key(pos_track_index, 4.5, Vector2(x_pos, start_y))
 	animation.track_insert_key(pos_track_index, 2.81, Vector2(x_pos, start_y))
 	animation.track_insert_key(pos_track_index, 4.0, Vector2(x_pos, start_y))
 	
