@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://b40h2s0cuixw0"]
 
-[ext_resource type="Texture2D" uid="uid://b7n1ifr3tdfcc" path="res://assets/background.png" id="1_rcj46"]
+[ext_resource type="Texture2D" uid="uid://clnvc6dbl5le8" path="res://assets/background.png" id="1_rcj46"]
 [ext_resource type="Texture2D" uid="uid://cby6agjm5670q" path="res://assets/tileset.png" id="2_ne67v"]
 [ext_resource type="PackedScene" uid="uid://bunoo8gsksr0h" path="res://src/actors/player.tscn" id="3_ngop4"]
 [ext_resource type="PackedScene" uid="uid://cjt1eiom1a251" path="res://src/objects/coin.tscn" id="4_8nsty"]
@@ -36,8 +36,11 @@ metadata/_edit_horizontal_guides_ = [504.0]
 layer = -100
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_rcj46")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -107,7 +110,5 @@ position = Vector2(4092, 663)
 position = Vector2(6912, 664)
 
 [node name="Portal" parent="." instance=ExtResource("7_c2asa")]
-z_index = 1
-z_as_relative = false
 position = Vector2(7352, 648)
-rotation = 0.00835322
+rotation = -0.000848408

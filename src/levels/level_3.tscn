@@ -34,8 +34,11 @@ sources/0 = SubResource("TileSetAtlasSource_gu6un")
 layer = -100
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_e6uhk")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -65,7 +68,7 @@ position = Vector2(1224, 664)
 
 [node name="Portal" parent="." instance=ExtResource("5_i7665")]
 position = Vector2(7400, -552)
-rotation = -0.00399641
+rotation = 0.000339135
 
 [node name="Coin" parent="." instance=ExtResource("7_tkb0j")]
 position = Vector2(504, 264)

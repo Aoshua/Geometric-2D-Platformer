@@ -52,10 +52,10 @@ script = ExtResource("1_4ng5m")
 metadata/_edit_horizontal_guides_ = [521.0]
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -75.0
-offset_top = -102.0
-offset_right = 1235.0
-offset_bottom = 765.0
+offset_left = -72.0
+offset_top = -12.0
+offset_right = 1238.0
+offset_bottom = 855.0
 texture = ExtResource("1_6cj6r")
 
 [node name="TitleControl" type="Control" parent="."]
