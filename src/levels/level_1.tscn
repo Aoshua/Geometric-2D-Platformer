@@ -154,4 +154,4 @@ position = Vector2(7358, 337)
 
 [node name="Portal" parent="." instance=ExtResource("6_dfoxo")]
 position = Vector2(7080, 248)
-rotation = -0.00176705
+rotation = -0.00827454

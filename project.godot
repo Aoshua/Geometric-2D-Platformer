@@ -22,11 +22,6 @@ MusicManager="*res://src/music_manager.gd"
 Formatters="*res://src/formatters.gd"
 SoundManager="*res://src/sound_manager.gd"
 
-[display]
-
-window/stretch/mode="viewport"
-window/stretch/aspect="expand"
-
 [editor_plugins]
 
 enabled=PackedStringArray()
